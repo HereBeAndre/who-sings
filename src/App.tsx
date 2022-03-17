@@ -1,11 +1,10 @@
+import Root from 'components/routes/Root';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>React TypeScript Template</p>
-      </header>
+      <Root />
     </div>
   );
 }
