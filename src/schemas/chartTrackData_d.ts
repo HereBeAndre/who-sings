@@ -1,9 +1,6 @@
-type TResponseHeader = {
-  status_code: number;
-  execute_time: number;
-};
+import { TMetaData } from './metaData_d';
 
-export type TTrackData = {
+export type TChartTrackData = {
   track: {
     track_id: number;
     track_name: string;
@@ -30,12 +27,12 @@ export type TTrackData = {
   };
 };
 
-export interface IResponseMessage {
+export interface IChartTrackResponse {
   data: {
     message: {
-      header: TResponseHeader;
+      header: TMetaData;
       body: {
-        track_list: TTrackData[];
+        track_list: TChartTrackData[];
       };
     };
   };

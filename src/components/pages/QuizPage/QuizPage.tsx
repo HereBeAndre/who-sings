@@ -4,7 +4,7 @@ import BaseLayout from 'components/layout/BaseLayout/BaseLayout';
 import Page from 'components/layout/Page/Page';
 import QuizCard from 'components/shared/QuizCard/QuizCard';
 
-import { TTrackData } from 'schemas/trackData_d';
+import { TChartTrackData } from 'schemas/chartTrackData_d';
 
 import { fetchTracks } from 'api/api';
 import QuizPageContext from './QuizPageContext';
@@ -12,7 +12,7 @@ import QuizPageContext from './QuizPageContext';
 import './QuizPage.scss';
 
 const QuizPage: React.FC = (props) => {
-  const [tracks, setTracks] = useState<TTrackData[]>([]);
+  const [tracks, setTracks] = useState<TChartTrackData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
