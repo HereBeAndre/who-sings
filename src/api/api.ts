@@ -1,20 +1,48 @@
 import axios from 'axios';
-import { IResponseMessage } from 'schemas/trackData_d';
 
-import { BASE_URL, COUNTRY, PAGE, PAGE_SIZE } from 'utils/constants';
+import { IChartTrackResponse } from 'schemas/chartTrackData_d';
+import { ITrackSnippetResponse } from 'schemas/trackSnippetData_d';
+import { IArtistRelatedResponse } from 'schemas/artistRelatedData_d';
+import { IArtistResponse } from 'schemas/artistData_d';
+
+import { BASE_URL, COUNTRY, PAGE, TRACKS_PAGE_SIZE } from 'utils/constants';
 
 const axiosInstance = axios.create({
   baseURL: `https://corsanywhere.herokuapp.com/${BASE_URL}`,
+  params: {
+    apikey: process.env.REACT_APP_API_KEY || '',
+  },
 });
 
 export const fetchTracks = () =>
-  axiosInstance.get<string, IResponseMessage>('chart.tracks.get', {
+  axiosInstance.get<string, IChartTrackResponse>('chart.tracks.get', {
     params: {
-      chart_name: 'top',
       country: COUNTRY,
       page: PAGE,
-      page_size: PAGE_SIZE,
+      page_size: TRACKS_PAGE_SIZE,
       f_has_lyrics: 1,
-      apikey: process.env.REACT_APP_API_KEY || '',
+    },
+  });
+
+export const fetchTrack = (track_id: number) =>
+  axiosInstance.get<string, ITrackSnippetResponse>('track.snippet.get', {
+    params: {
+      track_id,
+    },
+  });
+
+export const fetchArtist = (artist_id: number) =>
+  axiosInstance.get<string, IArtistResponse>('artist.get', {
+    params: {
+      artist_id,
+    },
+  });
+
+export const fetchRelatedArtists = (artist_id: number) =>
+  axiosInstance.get<string, IArtistRelatedResponse>('artist.related.get', {
+    params: {
+      artist_id,
+      page_size: 2,
+      page: 1,
     },
   });

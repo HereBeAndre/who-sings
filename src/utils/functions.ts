@@ -1,4 +1,4 @@
-import { TTrackData } from 'schemas/trackData_d';
+import { TChartTrackData } from 'schemas/chartTrackData_d';
 
-export const getTrackProperty = (track: TTrackData, property: 'track_id' | 'artist_id') =>
+export const getTrackProperty = (track: TChartTrackData, property: 'track_id' | 'artist_id') =>
   track?.track[property];
