@@ -35,7 +35,6 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
               if (artist?.artist_id !== correctArtistId) {
                 console.log('WRONG ANSWER -> +0');
               }
-              console.log(card);
 
               card === 4 ? console.log('Game is over! Redirect to user screen') : setCard(card + 1);
             }}
