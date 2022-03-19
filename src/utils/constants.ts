@@ -1,12 +1,14 @@
 import { TArtistData } from 'schemas/artistRelatedData_d';
 
 export const BASE_URL = 'https://api.musixmatch.com/ws/1.1/';
-export const COUNTRY = 'fdsfsd';
+export const COUNTRY = 'WV';
+export const CHART_NAME = 'top';
 // ? TODO: Make PAGE dynamic??
-export const PAGE = 1;
+export const PAGE = Math.round(Math.random() * 5);
 export const TRACKS_PAGE_SIZE = 5;
 export const ARTISTS_PAGE_SIZE = 3;
 
+// Sometimes request for related artists returns an empty list - hence use mocked list to fill the quiz options
 export const WRONG_ARTIST_OPTIONS: TArtistData[] = [
   {
     //   ! TODO -> Replace with generateRandomNumber() helper? Same applies for API pages

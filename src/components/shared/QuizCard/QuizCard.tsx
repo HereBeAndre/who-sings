@@ -8,7 +8,7 @@ import QuizCardContent from 'components/shared/QuizCardContent/QuizCardContent';
 
 import { fetchRelatedArtists, fetchArtist, fetchTrack } from 'api/api';
 
-import { getTrackProperty } from 'utils/functions';
+import { getTrackProperty, reduceArtistObject } from 'utils/functions';
 import { WRONG_ARTIST_OPTIONS } from 'utils/constants';
 
 interface IQuizCardProps {
@@ -16,9 +16,6 @@ interface IQuizCardProps {
 }
 
 const QuizCard: React.FC<IQuizCardProps> = ({ track }) => {
-  // ! TODO Check if needed
-  const { card, setCard } = useContext(QuizPageContext);
-
   const trackId = getTrackProperty(track, 'track_id');
   const artistId = getTrackProperty(track, 'artist_id');
 
@@ -57,10 +54,13 @@ const QuizCard: React.FC<IQuizCardProps> = ({ track }) => {
     artistId &&
       fetchRelatedArtists(artistId).then(
         (response) => {
+          const artistListResponse = response?.data?.message?.body?.artist_list || [];
+
           const relatedArtists =
-            response?.data?.message?.body?.artist_list.length === 2
-              ? response?.data?.message?.body?.artist_list
+            artistListResponse.length === 2
+              ? reduceArtistObject(artistListResponse)
               : WRONG_ARTIST_OPTIONS;
+
           setArtists((prev) => [...prev, ...relatedArtists]);
         },
         /* Handle errors here instead of a catch() block so that we don't swallow
@@ -71,13 +71,12 @@ const QuizCard: React.FC<IQuizCardProps> = ({ track }) => {
           // setError(err?.message);
         },
       );
-  }, [trackId, artistId]);
 
-  // ! TODO Check if needed
-  /* const onOptionClick = (evt: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    console.log(evt);
-    setCard(card + 1);
-  }; */
+    // Clean-up to empty artist list from previous question
+    return () => {
+      setArtists([]);
+    };
+  }, [trackId, artistId]);
 
   return snippetBody ? (
     <QuizCardContent snippet={snippetBody} correctArtistId={artistId} artists={artists} />
