@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { TChartTrackData } from 'schemas/chartTrackData_d';
 import { TArtistData } from 'schemas/artistRelatedData_d';
 
-import QuizPageContext from 'components/pages/QuizPage/QuizPageContext';
 import QuizCardContent from 'components/shared/QuizCardContent/QuizCardContent';
 
 import { fetchRelatedArtists, fetchArtist, fetchTrack } from 'api/api';

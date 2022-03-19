@@ -11,3 +11,23 @@ export const reduceArtistObject = (list: any[]): any[] => {
     return acc;
   }, []);
 };
+
+export const stringifyAndSetToStorage = (
+  property: string,
+  data: any,
+  storage: 'localStorage' | 'sessionStorage' = 'localStorage',
+) => {
+  const stringifiedData = JSON.stringify(data);
+  return storage === 'localStorage'
+    ? localStorage.setItem(property, stringifiedData)
+    : sessionStorage.setItem(property, stringifiedData);
+};
+
+export const getFromStorageAndParse = (
+  property: string,
+  storage: 'localStorage' | 'sessionStorage' = 'localStorage',
+) => {
+  const storageData =
+    storage === 'localStorage' ? localStorage.getItem(property) : sessionStorage.getItem(property);
+  return storageData && JSON.parse(storageData);
+};
