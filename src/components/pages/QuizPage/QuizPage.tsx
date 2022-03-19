@@ -41,7 +41,7 @@ const QuizPage: React.FC = (props) => {
       <Page {...props}>
         <BaseLayout>
           <div className="quiz-page-container">
-            <QuizCard track={tracks[card]} />
+            {tracks?.length ? <QuizCard track={tracks[card]} /> : <>Loading...</>}
           </div>
         </BaseLayout>
       </Page>

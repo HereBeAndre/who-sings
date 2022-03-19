@@ -5,7 +5,7 @@ import { ITrackSnippetResponse } from 'schemas/trackSnippetData_d';
 import { IArtistRelatedResponse } from 'schemas/artistRelatedData_d';
 import { IArtistResponse } from 'schemas/artistData_d';
 
-import { BASE_URL, COUNTRY, PAGE, TRACKS_PAGE_SIZE } from 'utils/constants';
+import { BASE_URL, CHART_NAME, COUNTRY, PAGE, TRACKS_PAGE_SIZE } from 'utils/constants';
 
 const axiosInstance = axios.create({
   baseURL: `https://corsanywhere.herokuapp.com/${BASE_URL}`,
@@ -17,6 +17,7 @@ const axiosInstance = axios.create({
 export const fetchTracks = () =>
   axiosInstance.get<string, IChartTrackResponse>('chart.tracks.get', {
     params: {
+      chart_name: CHART_NAME,
       country: COUNTRY,
       page: PAGE,
       page_size: TRACKS_PAGE_SIZE,
