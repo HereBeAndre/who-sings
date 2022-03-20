@@ -23,7 +23,7 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
   correctArtistId,
   artists,
 }) => {
-  const { card, setCard } = useContext(QuizPageContext);
+  const { cardNumber, setCardNumber } = useContext(QuizPageContext);
   const navigate = useNavigate();
   return (
     <Card title={snippet} style={{ width: 600 }}>
@@ -35,16 +35,29 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
             icon={<PlayCircleOutlined />}
             size="large"
             key={artist?.artist_id}
-            // TODO FIX LOGIC -> 1st check: if card === 4 return and redirect to user screen
+            // TODO Extract into helper function
             onClick={() => {
               if (artist?.artist_id === correctArtistId) {
-                console.log('RIGHT ANSWER -> +100');
                 const currentScore = getFromStorageAndParse('score');
                 const updatedScore = Number(currentScore) + CORRECT_ANSWER_POINTS;
                 stringifyAndSetToStorage('score', updatedScore);
               }
 
-              card === 4 ? navigate(AppRoutes.MY_GAMES) : setCard(card + 1);
+              // cardNumber is 0 indexed - Condition marks when game is over
+              if (cardNumber === 4) {
+                // Update last games list
+                const username = getFromStorageAndParse('username');
+                const score = getFromStorageAndParse('score');
+                const userLastGames = getFromStorageAndParse('lastGames');
+                const updatedUserGames = [...userLastGames, { username, score }];
+                stringifyAndSetToStorage('lastGames', updatedUserGames);
+
+                // TODO Update high score list
+
+                navigate(AppRoutes.MY_GAMES);
+                return;
+              }
+              setCardNumber(cardNumber + 1);
             }}
           >
             {artist?.artist_name}

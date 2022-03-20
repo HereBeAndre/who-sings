@@ -2,8 +2,8 @@ import { createContext } from 'react';
 
 // set the defaults
 const QuizPageContext = createContext({
-  card: 0,
-  setCard: (current: number) => {},
+  cardNumber: 0,
+  setCardNumber: (currentCard: number) => {},
 });
 
 export default QuizPageContext;

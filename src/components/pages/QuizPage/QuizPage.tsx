@@ -16,8 +16,8 @@ const QuizPage: React.FC = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
-  const [card, setCard] = useState(0);
-  const value = { card, setCard };
+  const [cardNumber, setCardNumber] = useState(0);
+  const value = { cardNumber, setCardNumber };
 
   useEffect(() => {
     setIsLoading(true);
@@ -41,7 +41,7 @@ const QuizPage: React.FC = (props) => {
       <Page {...props}>
         <BaseLayout>
           <div className="quiz-page-container">
-            {tracks?.length ? <QuizCard track={tracks[card]} /> : <>Loading...</>}
+            {tracks?.length ? <QuizCard track={tracks[cardNumber]} /> : <>Loading...</>}
           </div>
         </BaseLayout>
       </Page>
