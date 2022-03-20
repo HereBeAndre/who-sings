@@ -59,6 +59,13 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+NOTE FOR FINAL README
+Something about the high scores ranking
+When I was a kid, I remember going to the local arcade to play Metal Slug.
+Truth be told I was not very good at it and, as a matter of fact, never ever made it to save my game score in the high scores ranking.
+On that specific Metal Slug arcade machine there was a username I can't recall who had almost all of the best scores. It was kind of upsetting to see all those crazy scores linked to one person and no scores from other players!
+Hence for Who Sings' high scores ranking - a.k.a Wall Of Fame - I decided to build the ranking such that each player has its best score displayed in the ranking - and no player can take up all spots. This way players have a higher chance to see their scores in the Wall Of Fame!
+
 ## License
 
 This project is distributed under Open Source license.

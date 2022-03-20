@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import LoginPage from 'components/pages/LoginPage/LoginPage';
 import QuizPage from 'components/pages/QuizPage/QuizPage';
 import MyGamesPage from 'components/pages/MyGamesPage/MyGamesPage';
-import WallOfFamePage from 'components/pages/WallOfFamePage/WallOfFamePage';
+import { MemoizedWOFPage as WallOfFamePage } from 'components/pages/WallOfFamePage/WallOfFamePage';
 
 import { AppRoutes } from 'components/routes/urls';
 

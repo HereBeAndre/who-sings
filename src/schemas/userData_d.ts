@@ -1,5 +1,9 @@
 export type TUser = {
   username: string;
   score: string;
-  highScore: string;
+};
+
+export type TWallOfFameUserData = {
+  username: string;
+  highscore: number;
 };
