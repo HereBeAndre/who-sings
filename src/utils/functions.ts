@@ -14,10 +14,10 @@ export const reduceArtistObject = (list: any[]): any[] => {
 
 export const stringifyAndSetToStorage = (
   property: string,
-  data: any,
+  value: any,
   storage: 'localStorage' | 'sessionStorage' = 'localStorage',
 ) => {
-  const stringifiedData = JSON.stringify(data);
+  const stringifiedData = JSON.stringify(value);
   return storage === 'localStorage'
     ? localStorage.setItem(property, stringifiedData)
     : sessionStorage.setItem(property, stringifiedData);
