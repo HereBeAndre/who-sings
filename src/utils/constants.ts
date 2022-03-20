@@ -51,3 +51,5 @@ export const WRONG_ARTIST_OPTIONS: TArtistData[] = [
     end_date: '',
   },
 ];
+
+export const CORRECT_ANSWER_POINTS = 100;

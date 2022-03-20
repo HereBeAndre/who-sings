@@ -18,9 +18,13 @@ interface IUserMenuProps {
 const UserMenu: React.FC<IUserMenuProps> = ({ username }) => {
   const navigate = useNavigate();
 
-  const onPlayClick = () => navigate(AppRoutes.QUIZ);
-  const onMyGamesClick = () => console.log('Go to MY GAMES');
+  const onPlayClick = () => {
+    stringifyAndSetToStorage('score', 0);
+    navigate(AppRoutes.QUIZ);
+  };
+  const onMyGamesClick = () => navigate(AppRoutes.MY_GAMES);
   const onHOFClick = () => navigate(AppRoutes.WALL_OF_FAME);
+
   const onLogoutClick = () => {
     stringifyAndSetToStorage('username', '');
     stringifyAndSetToStorage('score', 0);
@@ -31,13 +35,13 @@ const UserMenu: React.FC<IUserMenuProps> = ({ username }) => {
   const menu = (
     <Menu>
       <Menu.Item key="1" icon={<RocketOutlined />} onClick={onPlayClick}>
-        Play
+        New Game
       </Menu.Item>
       <Menu.Item key="2" icon={<RadarChartOutlined />} onClick={onMyGamesClick}>
         My Games
       </Menu.Item>
       <Menu.Item key="3" icon={<TrophyOutlined />} onClick={onHOFClick}>
-        Hall Of Fame
+        Wall Of Fame
       </Menu.Item>
       <Menu.Item key="4" icon={<LogoutOutlined />} onClick={onLogoutClick}>
         Logout
