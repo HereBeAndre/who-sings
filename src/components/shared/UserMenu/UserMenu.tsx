@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons';
 
 import { AppRoutes } from 'components/routes/urls';
-import { stringifyAndSetToStorage } from 'utils/functions';
+import { getFromStorageAndParse, stringifyAndSetToStorage } from 'utils/functions';
 
 interface IUserMenuProps {
   username: string;
@@ -26,8 +26,10 @@ const UserMenu: React.FC<IUserMenuProps> = ({ username }) => {
   const onHOFClick = () => navigate(AppRoutes.WALL_OF_FAME);
 
   const onLogoutClick = () => {
+    const lastGames = getFromStorageAndParse('lastGames');
     stringifyAndSetToStorage('username', '');
     stringifyAndSetToStorage('score', 0);
+    stringifyAndSetToStorage(username, lastGames, 'sessionStorage');
     // TODO Handle highScore too?
     navigate(AppRoutes.QUIZ);
   };
