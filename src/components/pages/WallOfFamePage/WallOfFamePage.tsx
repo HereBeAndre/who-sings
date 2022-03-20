@@ -2,6 +2,7 @@ import BaseLayout from 'components/layout/BaseLayout/BaseLayout';
 import Page from 'components/layout/Page/Page';
 
 const WallOfFamePage: React.FC = (props) => {
+  // TODO Update high score list
   return (
     <Page {...props}>
       <BaseLayout>

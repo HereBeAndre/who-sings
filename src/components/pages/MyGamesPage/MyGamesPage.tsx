@@ -32,12 +32,12 @@ const MyGamesPage: React.FC = (props) => {
                   </Text>
                 </div>
                 <div>
-                  {game.score === 500 ? (
+                  {game === 500 ? (
                     <>
-                      <StarOutlined /> {game.score}
+                      <StarOutlined /> {game}
                     </>
                   ) : (
-                    game.score
+                    game
                   )}
                 </div>
               </List.Item>

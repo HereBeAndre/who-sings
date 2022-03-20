@@ -18,7 +18,7 @@ interface IUserMenuProps {
 const UserMenu: React.FC<IUserMenuProps> = ({ username }) => {
   const navigate = useNavigate();
 
-  const onPlayClick = () => {
+  const onNewGameClick = () => {
     stringifyAndSetToStorage('score', 0);
     navigate(AppRoutes.QUIZ);
   };
@@ -28,15 +28,18 @@ const UserMenu: React.FC<IUserMenuProps> = ({ username }) => {
   const onLogoutClick = () => {
     const lastGames = getFromStorageAndParse('lastGames');
     stringifyAndSetToStorage('username', '');
+    stringifyAndSetToStorage('lastGames', []);
     stringifyAndSetToStorage('score', 0);
-    stringifyAndSetToStorage(username, lastGames, 'sessionStorage');
-    // TODO Handle highScore too?
+
+    const sessionUserRecord = getFromStorageAndParse(username, 'sessionStorage');
+    const updatedUserRecord = { lastGames, highscore: sessionUserRecord.highscore };
+    stringifyAndSetToStorage(username, updatedUserRecord, 'sessionStorage');
     navigate(AppRoutes.QUIZ);
   };
 
   const menu = (
     <Menu>
-      <Menu.Item key="1" icon={<RocketOutlined />} onClick={onPlayClick}>
+      <Menu.Item key="1" icon={<RocketOutlined />} onClick={onNewGameClick}>
         New Game
       </Menu.Item>
       <Menu.Item key="2" icon={<RadarChartOutlined />} onClick={onMyGamesClick}>

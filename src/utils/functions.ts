@@ -12,6 +12,10 @@ export const reduceArtistObject = (list: any[]): any[] => {
   }, []);
 };
 
+// Use this function to get the greater integer out of an array of integers
+export const reduceIntegersArray = (array: number[]) =>
+  array.reduce((acc, curr) => (curr > acc ? curr : acc), 0);
+
 export const stringifyAndSetToStorage = (
   property: string,
   value: any,
