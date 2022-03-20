@@ -53,3 +53,5 @@ export const WRONG_ARTIST_OPTIONS: TArtistData[] = [
 ];
 
 export const CORRECT_ANSWER_POINTS = 100;
+// Set high scores ranking to 10 places
+export const WOF_CUT_OFF = 10;

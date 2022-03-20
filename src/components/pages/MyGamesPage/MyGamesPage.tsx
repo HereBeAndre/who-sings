@@ -12,7 +12,7 @@ import './MyGamesPage.scss';
 const { Text } = Typography;
 
 const MyGamesPage: React.FC = (props) => {
-  const lastGames = (getFromStorageAndParse('lastGames') || []).reverse();
+  const lastGames: number[] = (getFromStorageAndParse('lastGames') || []).reverse();
   const last10Games = lastGames.filter((game: any, index: number) => index < 10);
 
   return (
@@ -24,7 +24,7 @@ const MyGamesPage: React.FC = (props) => {
             header={<div>Last 10 Games</div>}
             className="last-game-list"
             dataSource={last10Games}
-            renderItem={(game: any) => (
+            renderItem={(score: number) => (
               <List.Item>
                 <div>
                   <Text>
@@ -32,12 +32,12 @@ const MyGamesPage: React.FC = (props) => {
                   </Text>
                 </div>
                 <div>
-                  {game === 500 ? (
+                  {score === 500 ? (
                     <>
-                      <StarOutlined /> {game}
+                      <StarOutlined /> {score}
                     </>
                   ) : (
-                    game
+                    score
                   )}
                 </div>
               </List.Item>
