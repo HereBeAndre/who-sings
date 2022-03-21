@@ -19,7 +19,7 @@ const WallOfFamePage: React.FC = (props) => {
 
   useEffect(() => {
     // TODO Implement new high score ranking logic - see notes
-    const usersSessionStorageData = Object.entries(sessionStorage);
+    const usersSessionStorageData = Object.entries(localStorage);
     const manipulatedUsersSessionStorageData = manipulateUserData(usersSessionStorageData);
     const sortedUserData = manipulatedUsersSessionStorageData.sort((a, b) => b.score - a.score);
     const bestTenUsers = sortedUserData.slice(0, WOF_CUT_OFF);
