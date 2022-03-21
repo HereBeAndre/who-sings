@@ -1,8 +1,12 @@
 import { TChartTrackData } from 'schemas/chartTrackData_d';
 import { TWallOfFameUserData } from 'schemas/userData_d';
 
+// START ~ Getter / Setter helpers
 export const getTrackProperty = (track: TChartTrackData, property: 'track_id' | 'artist_id') =>
   track?.track[property];
+// END ~ Getter / Setter helpers
+
+// START ~ Data manipulator helpers
 
 // USAGE ~ flatten each `artist` object to its first level inside the array
 export const reduceArtistObject = (list: any[]): any[] => {
@@ -17,18 +21,8 @@ export const reduceArtistObject = (list: any[]): any[] => {
 export const reduceIntegersArray = (array: number[]) =>
   array.reduce((acc, curr) => (curr > acc ? curr : acc), 0);
 
-// ! TODO Delete if not needed
-// export const manipulateUserData = (data: [string, any][]): TWallOfFameUserData[] => {
-//   return data.reduce((acc, curr) => {
-//     const obj: any = {};
-//     obj['username'] = curr[0];
-//     obj['highscore'] = JSON.parse(curr[1]).highscore;
-//     acc.push(obj);
-//     return acc;
-//   }, [] as TWallOfFameUserData[]);
-// };
-
 // USAGE ~ Manipulate user data stored in Session Storage to feed Wall Of Fame table data
+// TODO: O(N^2) not very efficient if input becomes large - either refactor or implement better DS in storage
 export const manipulateUserData = (data: [string, string][]): TWallOfFameUserData[] => {
   return data?.reduce((acc: TWallOfFameUserData[], curr) => {
     const arr: TWallOfFameUserData[] = JSON.parse(curr[1])?.lastGames?.map((i: number) => {
@@ -39,6 +33,9 @@ export const manipulateUserData = (data: [string, string][]): TWallOfFameUserDat
   }, []);
 };
 
+// END ~ Data manipulator helpers
+
+// START ~ Storages helpers
 export const stringifyAndSetToStorage = (
   property: string,
   value: any,
@@ -58,3 +55,4 @@ export const getFromStorageAndParse = (
     storage === 'localStorage' ? localStorage.getItem(property) : sessionStorage.getItem(property);
   return storageData && JSON.parse(storageData);
 };
+// END ~ Storages helpers

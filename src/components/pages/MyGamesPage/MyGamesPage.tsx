@@ -15,7 +15,7 @@ const MyGamesPage: React.FC = (props) => {
   const lastGames: number[] = (
     getFromStorageAndParse('lastGames', 'sessionStorage') || []
   ).reverse();
-  const last10Games = lastGames.filter((game: any, index: number) => index < 10);
+  const last10Games = lastGames.filter((game: number, index: number) => index < 10);
 
   return (
     <Page {...props}>

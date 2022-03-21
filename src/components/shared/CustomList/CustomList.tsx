@@ -2,8 +2,7 @@ import { ReactNode } from 'react';
 import { List } from 'antd';
 
 interface ICustomListProps {
-  // TODO Fix any
-  dataSource: any;
+  dataSource: any[];
   header: ReactNode;
   className?: string;
   renderItem: ((item: any, index: number) => ReactNode) | undefined;
