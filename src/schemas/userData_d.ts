@@ -3,7 +3,12 @@ export type TUser = {
   score: string;
 };
 
+export type TStorageUserData = {
+  username: string;
+  lastGames: number;
+};
+
 export type TWallOfFameUserData = {
   username: string;
-  highscore: number;
+  score: number;
 };

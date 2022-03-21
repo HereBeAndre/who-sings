@@ -31,8 +31,8 @@ const UserMenu: React.FC<IUserMenuProps> = ({ username }) => {
     stringifyAndSetToStorage('lastGames', []);
     stringifyAndSetToStorage('score', 0);
 
-    const sessionUserRecord = getFromStorageAndParse(username, 'sessionStorage');
-    const updatedUserRecord = { lastGames, highscore: sessionUserRecord.highscore };
+    // ? TODO pass lastGames directly?
+    const updatedUserRecord = { lastGames };
     stringifyAndSetToStorage(username, updatedUserRecord, 'sessionStorage');
     navigate(AppRoutes.QUIZ);
   };

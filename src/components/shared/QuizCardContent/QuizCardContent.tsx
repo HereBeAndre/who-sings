@@ -9,11 +9,7 @@ import { TArtistData } from 'schemas/artistRelatedData_d';
 import { AppRoutes } from 'components/routes/urls';
 import QuizPageContext from 'components/pages/QuizPage/QuizPageContext';
 
-import {
-  getFromStorageAndParse,
-  reduceIntegersArray,
-  stringifyAndSetToStorage,
-} from 'utils/functions';
+import { getFromStorageAndParse, stringifyAndSetToStorage } from 'utils/functions';
 import { CORRECT_ANSWER_POINTS } from 'utils/constants';
 
 interface IQuizCardContentProps {
@@ -49,14 +45,12 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
 
               // cardNumber is 0 indexed - Condition marks when game is over
               if (cardNumber === 4) {
-                // Update last games list
                 const username = getFromStorageAndParse('username');
                 const score = getFromStorageAndParse('score');
                 const userLastGames = getFromStorageAndParse('lastGames');
                 const updatedUserGames = [...userLastGames, score];
                 stringifyAndSetToStorage('lastGames', updatedUserGames);
-                const userMaxScore = reduceIntegersArray(updatedUserGames);
-                const updatedUserRecord = { lastGames: updatedUserGames, highscore: userMaxScore };
+                const updatedUserRecord = { lastGames: updatedUserGames };
 
                 stringifyAndSetToStorage(username, updatedUserRecord, 'sessionStorage');
 

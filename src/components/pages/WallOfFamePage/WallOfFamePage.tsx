@@ -21,9 +21,9 @@ const WallOfFamePage: React.FC = (props) => {
     // TODO Implement new high score ranking logic - see notes
     const usersSessionStorageData = Object.entries(sessionStorage);
     const manipulatedUsersSessionStorageData = manipulateUserData(usersSessionStorageData);
-    const bestTenUsers = manipulatedUsersSessionStorageData.slice(0, WOF_CUT_OFF);
-    const sortedUserData = bestTenUsers.sort((a, b) => b.highscore - a.highscore);
-    setUsersData(sortedUserData);
+    const sortedUserData = manipulatedUsersSessionStorageData.sort((a, b) => b.score - a.score);
+    const bestTenUsers = sortedUserData.slice(0, WOF_CUT_OFF);
+    setUsersData(bestTenUsers);
   }, []);
 
   return (
@@ -41,7 +41,7 @@ const WallOfFamePage: React.FC = (props) => {
                   <Text>{user.username}</Text>
                 </div>
                 <div>
-                  <Text>{user.highscore}</Text>
+                  <Text>{user.score}</Text>
                 </div>
               </List.Item>
             )}
