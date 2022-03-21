@@ -19,21 +19,21 @@ const UserMenu: React.FC<IUserMenuProps> = ({ username }) => {
   const navigate = useNavigate();
 
   const onNewGameClick = () => {
-    stringifyAndSetToStorage('score', 0);
+    stringifyAndSetToStorage('score', 0, 'sessionStorage');
     navigate(AppRoutes.QUIZ);
   };
   const onMyGamesClick = () => navigate(AppRoutes.MY_GAMES);
   const onHOFClick = () => navigate(AppRoutes.WALL_OF_FAME);
 
   const onLogoutClick = () => {
-    const lastGames = getFromStorageAndParse('lastGames');
-    stringifyAndSetToStorage('username', '');
-    stringifyAndSetToStorage('lastGames', []);
-    stringifyAndSetToStorage('score', 0);
+    const lastGames = getFromStorageAndParse('lastGames', 'sessionStorage');
+    stringifyAndSetToStorage('username', '', 'sessionStorage');
+    stringifyAndSetToStorage('lastGames', [], 'sessionStorage');
+    stringifyAndSetToStorage('score', 0, 'sessionStorage');
 
     // ? TODO pass lastGames directly?
     const updatedUserRecord = { lastGames };
-    stringifyAndSetToStorage(username, updatedUserRecord, 'sessionStorage');
+    stringifyAndSetToStorage(username, updatedUserRecord);
     navigate(AppRoutes.QUIZ);
   };
 

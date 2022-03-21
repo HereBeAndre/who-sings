@@ -38,21 +38,21 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
             // TODO Extract into helper function
             onClick={() => {
               if (artist?.artist_id === correctArtistId) {
-                const currentScore = getFromStorageAndParse('score');
+                const currentScore = getFromStorageAndParse('score', 'sessionStorage');
                 const updatedScore = Number(currentScore) + CORRECT_ANSWER_POINTS;
-                stringifyAndSetToStorage('score', updatedScore);
+                stringifyAndSetToStorage('score', updatedScore, 'sessionStorage');
               }
 
               // cardNumber is 0 indexed - Condition marks when game is over
               if (cardNumber === 4) {
-                const username = getFromStorageAndParse('username');
-                const score = getFromStorageAndParse('score');
-                const userLastGames = getFromStorageAndParse('lastGames');
+                const username = getFromStorageAndParse('username', 'sessionStorage');
+                const score = getFromStorageAndParse('score', 'sessionStorage');
+                const userLastGames = getFromStorageAndParse('lastGames', 'sessionStorage');
                 const updatedUserGames = [...userLastGames, score];
-                stringifyAndSetToStorage('lastGames', updatedUserGames);
+                stringifyAndSetToStorage('lastGames', updatedUserGames, 'sessionStorage');
                 const updatedUserRecord = { lastGames: updatedUserGames };
 
-                stringifyAndSetToStorage(username, updatedUserRecord, 'sessionStorage');
+                stringifyAndSetToStorage(username, updatedUserRecord);
 
                 navigate(AppRoutes.MY_GAMES);
                 return;

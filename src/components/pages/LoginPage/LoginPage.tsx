@@ -12,15 +12,15 @@ const LoginPage: React.FC = (props) => {
 
   const onLogin = (user: TUserFormData) => {
     const { username } = user;
-    const userLastGames = getFromStorageAndParse(username, 'sessionStorage');
+    const userLastGames = getFromStorageAndParse(username);
     // TODO Refactor to use initializeGame() function
     // ? Might as well stringify an object - tricky to stringify and parse though, prefer to store separately
-    stringifyAndSetToStorage('username', username);
-    stringifyAndSetToStorage('score', 0);
+    stringifyAndSetToStorage('username', username, 'sessionStorage');
+    stringifyAndSetToStorage('score', 0, 'sessionStorage');
     if (userLastGames?.lastGames?.length) {
-      stringifyAndSetToStorage('lastGames', userLastGames?.lastGames);
+      stringifyAndSetToStorage('lastGames', userLastGames?.lastGames, 'sessionStorage');
     } else {
-      stringifyAndSetToStorage('lastGames', []);
+      stringifyAndSetToStorage('lastGames', [], 'sessionStorage');
     }
 
     // ? MAYBE TODO highscores to sessionStorage -> if highscores is already present, set it again -> else initialize with []

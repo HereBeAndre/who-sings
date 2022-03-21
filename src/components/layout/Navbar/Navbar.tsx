@@ -8,7 +8,7 @@ import './Navbar.scss';
 const Navbar = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
-  const currentUsername: string = getFromStorageAndParse('username')!;
+  const currentUsername: string = getFromStorageAndParse('username', 'sessionStorage')!;
 
   useEffect(() => {
     !currentUsername && navigate(AppRoutes.LOGIN);
