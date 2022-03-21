@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/dot-notation */
-/* eslint-disable prefer-destructuring */
 import { TChartTrackData } from 'schemas/chartTrackData_d';
 import { TWallOfFameUserData } from 'schemas/userData_d';
 
@@ -19,15 +17,26 @@ export const reduceArtistObject = (list: any[]): any[] => {
 export const reduceIntegersArray = (array: number[]) =>
   array.reduce((acc, curr) => (curr > acc ? curr : acc), 0);
 
-// USAGE ~ Manipulate user data stored in Session Storage to feed Wall Of Fametable data
-export const manipulateUserData = (data: [string, any][]): TWallOfFameUserData[] => {
-  return data.reduce((acc, curr) => {
-    const obj: any = {};
-    obj['username'] = curr[0];
-    obj['highscore'] = JSON.parse(curr[1]).highscore;
-    acc.push(obj);
+// ! TODO Delete if not needed
+// export const manipulateUserData = (data: [string, any][]): TWallOfFameUserData[] => {
+//   return data.reduce((acc, curr) => {
+//     const obj: any = {};
+//     obj['username'] = curr[0];
+//     obj['highscore'] = JSON.parse(curr[1]).highscore;
+//     acc.push(obj);
+//     return acc;
+//   }, [] as TWallOfFameUserData[]);
+// };
+
+// USAGE ~ Manipulate user data stored in Session Storage to feed Wall Of Fame table data
+export const manipulateUserData = (data: [string, string][]): TWallOfFameUserData[] => {
+  return data?.reduce((acc: TWallOfFameUserData[], curr) => {
+    const arr: TWallOfFameUserData[] = JSON.parse(curr[1])?.lastGames?.map((i: number) => {
+      return { username: curr[0], score: i };
+    });
+    acc.push(...arr);
     return acc;
-  }, [] as TWallOfFameUserData[]);
+  }, []);
 };
 
 export const stringifyAndSetToStorage = (
