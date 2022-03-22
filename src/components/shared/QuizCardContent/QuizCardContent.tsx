@@ -12,6 +12,8 @@ import QuizPageContext from 'components/pages/QuizPage/QuizPageContext';
 import { getFromStorageAndParse, stringifyAndSetToStorage } from 'utils/functions';
 import { CORRECT_ANSWER_POINTS } from 'utils/constants';
 
+import './QuizCardContent.scss';
+
 interface IQuizCardContentProps {
   snippet: string;
   correctArtistId: number;
@@ -26,12 +28,13 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
   const { cardNumber, setCardNumber } = useContext(QuizPageContext);
   const navigate = useNavigate();
   return (
-    <Card title={snippet} style={{ width: 600 }}>
+    <Card title={snippet} className="quiz-card-content">
       {artists?.map((artist) => {
         return (
           <Button
             type="default"
             shape="round"
+            className="quiz-card-button"
             icon={<PlayCircleOutlined />}
             size="large"
             key={artist?.artist_id}

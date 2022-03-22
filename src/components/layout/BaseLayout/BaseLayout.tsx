@@ -13,7 +13,7 @@ interface IBaseLayoutProps {
 
 const BaseLayout: React.FC<IBaseLayoutProps> = ({ children }) => (
   <Layout className="ant-layout-custom">
-    <Header>
+    <Header className="custom-layout-header">
       <Navbar />
     </Header>
     <Content className="base-layout-content">{children}</Content>

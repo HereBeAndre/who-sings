@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 import { List } from 'antd';
 
+import './CustomList.scss';
+
 interface ICustomListProps {
   dataSource: any[];
   header: ReactNode;
@@ -14,7 +16,7 @@ const CustomList: React.FC<ICustomListProps> = ({ dataSource, header, className,
       size="large"
       header={header}
       bordered
-      className={className}
+      className={`custom-list ${className}`}
       dataSource={dataSource}
       renderItem={renderItem}
     />

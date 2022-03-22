@@ -56,3 +56,5 @@ export const getFromStorageAndParse = (
   return storageData && JSON.parse(storageData);
 };
 // END ~ Storages helpers
+
+export const generateRandomNumber = (baseNumber: number) => Math.round(Math.random() * baseNumber);

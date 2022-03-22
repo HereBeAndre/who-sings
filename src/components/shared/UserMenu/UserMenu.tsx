@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Button, Dropdown, Menu } from 'antd';
 import {
+  DownOutlined,
   LogoutOutlined,
   RadarChartOutlined,
   RocketOutlined,
@@ -10,6 +11,8 @@ import {
 
 import { AppRoutes } from 'components/routes/urls';
 import { getFromStorageAndParse, stringifyAndSetToStorage } from 'utils/functions';
+
+import './UserMenu.scss';
 
 interface IUserMenuProps {
   username: string;
@@ -56,8 +59,8 @@ const UserMenu: React.FC<IUserMenuProps> = ({ username }) => {
 
   return (
     <Dropdown overlay={menu}>
-      <Button>
-        <UserOutlined /> {username}
+      <Button className="user-menu-button" size="large">
+        <UserOutlined /> {username} <DownOutlined id="user-menu-caret" />
       </Button>
     </Dropdown>
   );

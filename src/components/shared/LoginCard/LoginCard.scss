@@ -1,7 +1,14 @@
 .login-form {
   max-width: 300px;
+  background: #f0f2f5;
+  padding: 1.5rem;
+  border-radius: 8px;
 }
 
 .login-form-button {
   width: 100%;
+  background-color: #073d79;
+  &:hover {
+    background-color: #0a468a;
+  }
 }
