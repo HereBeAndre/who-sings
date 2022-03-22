@@ -19,16 +19,15 @@ const LoginCard: React.FC<ILoginCardProps> = ({ onFinish }) => {
         rules={[
           {
             required: true,
-            message: 'Please input your Username!',
+            message: 'Please type your username',
           },
         ]}
       >
         <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
       </Form.Item>
-
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
-          Play!
+          Play
         </Button>
       </Form.Item>
     </Form>

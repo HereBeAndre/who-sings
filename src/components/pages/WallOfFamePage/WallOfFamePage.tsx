@@ -29,7 +29,7 @@ const WallOfFamePage: React.FC = (props) => {
   return (
     <Page {...props}>
       <BaseLayout>
-        <div className="quiz-page-container">
+        <div>
           <CustomList
             //   TODO Make header 'Most recent to oldest', move current title to actual page title - <h2> or smth
             header={<div>Wall of Fame</div>}

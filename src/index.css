@@ -151,3 +151,12 @@ body,
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.ant-layout-content {
+  background: linear-gradient(
+    90deg,
+    rgba(121, 9, 113, 1) 0%,
+    rgba(121, 9, 94, 1) 51%,
+    rgba(7, 61, 121, 1) 100%
+  );
+}

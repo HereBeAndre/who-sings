@@ -1,5 +1,5 @@
-import { PushpinOutlined, StarOutlined } from '@ant-design/icons';
 import { List, Typography } from 'antd';
+import { StarFilled } from '@ant-design/icons';
 
 import BaseLayout from 'components/layout/BaseLayout/BaseLayout';
 import Page from 'components/layout/Page/Page';
@@ -20,7 +20,7 @@ const MyGamesPage: React.FC = (props) => {
   return (
     <Page {...props}>
       <BaseLayout>
-        <div className="login-page-container">
+        <div>
           <CustomList
             //   TODO Make header 'Most recent to oldest', move current title to actual page title - <h2> or smth
             header={<div>Last 10 Games</div>}
@@ -29,14 +29,12 @@ const MyGamesPage: React.FC = (props) => {
             renderItem={(score: number) => (
               <List.Item>
                 <div>
-                  <Text>
-                    <PushpinOutlined /> Game Score
-                  </Text>
+                  <Text>Final Score</Text>
                 </div>
                 <div>
                   {score === 500 ? (
                     <>
-                      <StarOutlined /> {score}
+                      <StarFilled /> {score}
                     </>
                   ) : (
                     score
