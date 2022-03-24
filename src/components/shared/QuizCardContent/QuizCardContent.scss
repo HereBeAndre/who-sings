@@ -14,11 +14,19 @@
   .quiz-card-button {
     background: #1d1d1d;
     color: #f0f2f5;
+    overflow: hidden;
+    white-space: nowrap;
     transition: 1000ms linear;
     -webkit-transition: background-color 1000ms linear;
     -moz-transition: background-color 1000ms linear;
     -o-transition: background-color 1000ms linear;
     -ms-transition: background-color 1000ms linear;
+
+    // ! TODO Try to add ellipsis
+    // &:nth-child(3) > span:nth-child(2) {
+    //   overflow: hidden;
+    // }
+
     &:hover {
       background: linear-gradient(
         90deg,

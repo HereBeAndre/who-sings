@@ -12,7 +12,10 @@ export const ARTISTS_PAGE_SIZE = 3;
 // END ~ API related variables
 
 // START ~ Game variables
+export const MILLISECONDS_PER_QUESTION = 10000;
+export const SECONDS_PER_QUESTION = MILLISECONDS_PER_QUESTION / 1000;
 export const CORRECT_ANSWER_POINTS = 100;
+export const LAST_QUESTION_INDEX = 5;
 // Set high scores ranking to 10 places
 export const WOF_CUT_OFF = 10;
 // END ~ Game variables
