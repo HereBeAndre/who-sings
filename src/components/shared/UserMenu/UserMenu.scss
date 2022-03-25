@@ -1,20 +1,11 @@
-// ! TODO Fix menu
 .user-menu-button {
   border-radius: 20px;
-  &:hover,
+  box-shadow: 1px 1px 6px #575454;
   &:active,
   &:focus {
     #user-menu-caret svg {
       transition: 1s;
       transform: rotate(180deg);
-    }
-    // color: #073d79;
-    color: #790971;
-    border: 1px solid #790971;
-  }
-  &:not(hover) {
-    #user-menu-caret svg {
-      transition: 1s;
     }
   }
 }

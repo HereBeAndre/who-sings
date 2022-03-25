@@ -1,9 +1,28 @@
 import { NavigateFunction } from 'react-router-dom';
 
 import { AppRoutes } from 'components/routes/urls';
+import { TUserFormData } from 'components/shared/LoginCard/LoginCard';
 
 import { getFromStorageAndParse, stringifyAndSetToStorage } from './functions';
 import { CORRECT_ANSWER_POINTS } from './constants';
+
+export const initializeGame = (
+  user: TUserFormData,
+  callback: NavigateFunction,
+  action: string = AppRoutes.QUIZ,
+) => {
+  const { username } = user;
+  const userLastGames = getFromStorageAndParse(username);
+  stringifyAndSetToStorage('username', username, 'sessionStorage');
+  stringifyAndSetToStorage('score', 0, 'sessionStorage');
+  if (userLastGames?.lastGames?.length) {
+    stringifyAndSetToStorage('lastGames', userLastGames?.lastGames, 'sessionStorage');
+  } else {
+    stringifyAndSetToStorage('lastGames', [], 'sessionStorage');
+  }
+
+  callback(action);
+};
 
 // USAGE ~ Increase user's game score on each correct answer
 export const handleCorrectAnswer = () => {

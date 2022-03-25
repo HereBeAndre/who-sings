@@ -20,30 +20,28 @@ const MyGamesPage: React.FC = (props) => {
   return (
     <Page {...props}>
       <BaseLayout>
-        <div>
-          <CustomList
-            //   TODO Make header 'Most recent to oldest', move current title to actual page title - <h2> or smth
-            header={<div>Last 10 Games</div>}
-            className="last-game-list"
-            dataSource={last10Games}
-            renderItem={(score: number) => (
-              <List.Item>
-                <div>
-                  <Text>Final Score</Text>
-                </div>
-                <div>
-                  {score === 500 ? (
-                    <>
-                      <StarFilled /> {score}
-                    </>
-                  ) : (
-                    score
-                  )}
-                </div>
-              </List.Item>
-            )}
-          />
-        </div>
+        <CustomList
+          //   TODO Make header 'Most recent to oldest', move current title to actual page title - <h2> or smth
+          header={<div>My Last 10 Games</div>}
+          className="last-game-list"
+          dataSource={last10Games}
+          renderItem={(score: number) => (
+            <List.Item>
+              <div>
+                <Text>Game Score</Text>
+              </div>
+              <div>
+                {score === 500 ? (
+                  <>
+                    <StarFilled /> {score}
+                  </>
+                ) : (
+                  score
+                )}
+              </div>
+            </List.Item>
+          )}
+        />
       </BaseLayout>
     </Page>
   );

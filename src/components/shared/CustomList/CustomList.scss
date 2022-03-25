@@ -1,5 +1,5 @@
 .custom-list {
-  width: 30rem;
+  width: 50%;
   border-radius: 16px;
   background-color: #f0f2f5;
   box-shadow: 1px 2px 12px #343333;
@@ -11,8 +11,51 @@
   }
   .ant-list-header {
     border-bottom: 1px solid #1d1d1d;
+    div {
+      font-weight: 900;
+    }
   }
   .ant-list-items li:not(:last-child) {
     border-bottom: 1px solid #1d1d1d;
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) and (max-device-width: 768px) {
+  .custom-list {
+    max-width: 80%;
+    max-height: 70%;
+    overflow-y: scroll;
+  }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+  .custom-list {
+    max-width: 80%;
+    max-height: 70%;
+    overflow-y: scroll;
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1223px) {
+  .custom-list {
+    width: 50%;
+    // height: 50%;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  .custom-list {
+    width: 40%;
+  }
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width: 1824px) {
+  .custom-list {
+    width: 30%;
   }
 }
