@@ -6,7 +6,7 @@ import Page from 'components/layout/Page/Page';
 import QuizCard from 'components/shared/QuizCard/QuizCard';
 import ErrorHandler from 'components/shared/ErrorHandler/ErrorHandler';
 
-import { TChartTrackData } from 'schemas/chartTrackData_d';
+import { TChartTrackData } from 'schemas/musixMatchData/chartTrackData_d';
 
 import { fetchTracks } from 'api/api';
 

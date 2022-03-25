@@ -1,4 +1,4 @@
-import { TChartTrackData } from 'schemas/chartTrackData_d';
+import { TChartTrackData } from 'schemas/musixMatchData/chartTrackData_d';
 import { TWallOfFameUserData } from 'schemas/userData_d';
 
 // START ~ Getter / Setter helpers

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Card } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
 
-import { TArtistData } from 'schemas/artistRelatedData_d';
+import { TArtistData } from 'schemas/musixMatchData/artistRelatedData_d';
 
 import QuizPageContext from 'components/pages/QuizPage/QuizPageContext';
 
@@ -15,7 +15,7 @@ import {
   SECONDS_PER_QUESTION,
 } from 'utils/constants';
 import { handleCorrectAnswer, handleGameOver } from 'utils/gameHelpers';
-import QuizCardContentHeader from './QuizCardContentHeader';
+import QuizCardContentHeader from './partials/QuizCardContentHeader';
 
 import './QuizCardContent.scss';
 

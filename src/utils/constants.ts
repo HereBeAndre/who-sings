@@ -1,4 +1,4 @@
-import { TArtistData } from 'schemas/artistRelatedData_d';
+import { TArtistData } from 'schemas/musixMatchData/artistRelatedData_d';
 
 // START ~ API related variables
 export const BASE_URL = 'https://api.musixmatch.com/ws/1.1/';
