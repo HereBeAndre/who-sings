@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import { IChartTrackResponse } from 'schemas/chartTrackData_d';
-import { ITrackSnippetResponse } from 'schemas/trackSnippetData_d';
-import { IArtistRelatedResponse } from 'schemas/artistRelatedData_d';
-import { IArtistResponse } from 'schemas/artistData_d';
+import { IChartTrackResponse } from 'schemas/musixMatchData/chartTrackData_d';
+import { ITrackSnippetResponse } from 'schemas/musixMatchData/trackSnippetData_d';
+import { IArtistResponse } from 'schemas/musixMatchData/artistData_d';
+import { IArtistRelatedResponse } from 'schemas/musixMatchData/artistRelatedData_d';
 
 import { BASE_URL, CHART_NAME, COUNTRY, TRACKS_PAGE_SIZE } from 'utils/constants';
 

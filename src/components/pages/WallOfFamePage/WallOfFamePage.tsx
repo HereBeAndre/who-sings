@@ -10,8 +10,6 @@ import { TWallOfFameUserData } from 'schemas/userData_d';
 import { manipulateUserData } from 'utils/functions';
 import { WOF_CUT_OFF } from 'utils/constants';
 
-import './WallOfFamePage.scss';
-
 const { Text } = Typography;
 
 const WallOfFamePage: React.FC = (props) => {
@@ -29,7 +27,6 @@ const WallOfFamePage: React.FC = (props) => {
     <Page {...props}>
       <BaseLayout>
         <CustomList
-          //   TODO Make header 'Most recent to oldest', move current title to actual page title - <h2> or smth
           header={<div>Wall of Fame</div>}
           className="wof-list"
           dataSource={usersData}

@@ -7,8 +7,6 @@ import CustomList from 'components/shared/CustomList/CustomList';
 
 import { getFromStorageAndParse } from 'utils/functions';
 
-import './MyGamesPage.scss';
-
 const { Text } = Typography;
 
 const MyGamesPage: React.FC = (props) => {
@@ -21,7 +19,6 @@ const MyGamesPage: React.FC = (props) => {
     <Page {...props}>
       <BaseLayout>
         <CustomList
-          //   TODO Make header 'Most recent to oldest', move current title to actual page title - <h2> or smth
           header={<div>My Last 10 Games</div>}
           className="last-game-list"
           dataSource={last10Games}

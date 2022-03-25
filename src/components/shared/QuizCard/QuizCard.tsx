@@ -1,8 +1,8 @@
 import { useEffect, useReducer, useState } from 'react';
 import { Spin } from 'antd';
 
-import { TChartTrackData } from 'schemas/chartTrackData_d';
-import { TArtistData } from 'schemas/artistRelatedData_d';
+import { TChartTrackData } from 'schemas/musixMatchData/chartTrackData_d';
+import { TArtistData } from 'schemas/musixMatchData/artistRelatedData_d';
 
 import QuizCardContent from 'components/shared/QuizCardContent/QuizCardContent';
 import ErrorHandler from 'components/shared/ErrorHandler/ErrorHandler';

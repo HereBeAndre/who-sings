@@ -1,26 +1,56 @@
-# React TypeScript Template
+# Who Sings
+
+> A quiz game that uses Musixmatch API.
 
 ## General Information
 
-> A React + TypeScript template bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+> This project's structure was cloned from a template I created - [react-typescript-template](https://github.com/HereBeAndre/react-typescript-template) - which in turn was originally bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Table of Contents
 
-- [React TypeScript Template](#react-typescript-template)
+- [Who Sings](#who-sings)
   - [General Information](#general-information)
   - [Table of Contents](#table-of-contents)
   - [Install](#install)
+  - [API](#api)
+  - [Dealing with CORS](#dealing-with-cors)
+  - [Local Environment Setup](#local-environment-setup)
   - [Available Scripts](#available-scripts)
     - [`npm start`](#npm-start)
     - [`npm test`](#npm-test)
     - [`npm run build`](#npm-run-build)
     - [`npm run eject`](#npm-run-eject)
+  - [Requirements](#requirements)
+  - [Implementation choices and Features](#implementation-choices-and-features)
+  - [Screenshots](#screenshots)
+  - [Room for Improvement](#room-for-improvement)
   - [License](#license)
 
 ## Install
 
-Run `npm install` to install all dependencies.
-The complete list of dependencies is included in `./package-lock.json`.\
+Run `npm install` to install all dependencies.\
+The complete list of dependencies is included in `./package-lock.json`.
+
+## API
+
+> **Musixmatch API** - (https://developer.musixmatch.com/)
+
+## Dealing with CORS
+
+> A proxy server was deployed on Heroku in order to perform cross-origin requests to the API.\
+> The client requests are forwarded by the proxy server to Musixmatch API.
+
+## Local Environment Setup
+
+1. In order to access Musixmatch API from Who Sings, you can create a free plan account on their [developer website](https://developer.musixmatch.com/plans).
+2. Once your account is set up and the associated API key is created, open the project in your favorite IDE.
+3. In the project's root, create a `.env` file. Inside the file add your API key:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`REACT_APP_MUSIXMATCH_API_KEY = <YOUR_MUSIXMATCH_API_KEY>`.
+
+4. Add `.env` to `.gitignore` file.
+
+You should be all set now. If that's not the case, please make sure you've followed the steps above.
 
 ## Available Scripts
 
@@ -36,6 +66,7 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
+Note: No tests available at the moment.\
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
@@ -59,13 +90,44 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-NOTE FOR FINAL README
-Something about the high scores ranking
-When I was a kid, I remember going to the local arcade to play Metal Slug.
-Truth be told I was not very good at it and, as a matter of fact, never ever made it to save my game score in the high scores ranking.
-On that specific Metal Slug arcade machine there was a username I can't recall who had almost all of the best scores. It was kind of upsetting to see all those crazy scores linked to one person and no scores from other players!
-Hence for Who Sings' high scores ranking - a.k.a Wall Of Fame - I decided to build the ranking such that each player has its best score displayed in the ranking - and no player can take up all spots. This way players have a higher chance to see their scores in the Wall Of Fame!
+## Requirements
+
+> Choose the artist that sings a specific line of lyrics, winning points for every correct choice.
+
+- [x] Quiz card with one line of lyrics and 3 artists to choose from;
+- [x] The game ends after completing N quiz cards, one after the other;
+- [x] Ask the name of the player with the ability to log off so that another user could play;
+- [x] Count the points and save them at the end of the game;
+- [x] Game time countdown for every quiz card. Once it runs out you pass to the next quiz card without getting any points.
+
+## Implementation choices and Features
+
+> - User's game data - including username, score and last played games - is stored in Session Storage.
+> - When a user logs out, their username and last played games data is stored in Local Storage so that on subsequent log in their data is retrieved from there.
+
+> - WIP
+
+## Screenshots
+
+![Login](./src/resources/who-sings_login.png)&nbsp;&nbsp;
+![Quiz](./src/resources/who-sings_quiz.png)&nbsp;&nbsp;
+![Wall Of Fame](./src/resources/who-sings_wof.png)&nbsp;&nbsp;
+![My Last 10 Games](./src/resources/who-sings_my-games.png)&nbsp;&nbsp;
+![User Menu](./src/resources/who-sings_user-menu.png)
+
+## Room for Improvement
+
+Todo:
+
+- [ ] App is not fully responsive.\
+      Layout works on large screens and laptops, handled in a decent manner on tablet, buggy on mobile;
+- [ ] Implement better functionality to fetch tracks and artists;
+
+Known bugs:
+
+- [ ] Responsiveness is missing on smaller devices. See first point of Todo list above;
+- [ ] Missing ellipsis in quiz card buttons' text when artist name is overly long;
 
 ## License
 
-This project is distributed under Open Source license.
+This project is licensed under the terms of the MIT license.
