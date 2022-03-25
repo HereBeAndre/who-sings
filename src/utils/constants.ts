@@ -1,12 +1,10 @@
 import { TArtistData } from 'schemas/artistRelatedData_d';
-import { generateRandomNumber } from './functions';
 
 // START ~ API related variables
 export const BASE_URL = 'https://api.musixmatch.com/ws/1.1/';
 export const COUNTRY = 'WV';
 export const CHART_NAME = 'top';
-// ? TODO: Make PAGE dynamic??
-export const PAGE = generateRandomNumber(8);
+export const BASE_PAGE_NUMBER = 10;
 export const TRACKS_PAGE_SIZE = 5;
 export const ARTISTS_PAGE_SIZE = 3;
 // END ~ API related variables
@@ -22,45 +20,41 @@ export const WOF_CUT_OFF = 10;
 
 /* Sometimes request for related artists returns an empty list.
 When this happens, use mocked list to fill the quiz options */
-export const WRONG_ARTIST_OPTIONS: TArtistData[] = [
+export const WRONG_ARTIST_OPTIONS: Partial<TArtistData>[] = [
   {
-    //   ! TODO -> Replace with generateRandomNumber() helper? Same applies for API pages
-    artist_id: generateRandomNumber(100),
+    artist_id: 123456789,
     artist_name: 'Belle and Sebastian',
-    artist_name_translation_list: [],
-    artist_comment: '',
-    artist_country: '',
-    artist_alias_list: [],
-    artist_rating: 0,
-    artist_twitter_url: '',
-    artist_credits: {
-      artist_list: [],
-    },
-    restricted: 0,
-    updated_time: '',
-    begin_date_year: '',
-    begin_date: '',
-    end_date_year: '',
-    end_date: '',
   },
   {
-    //   ! TODO -> Replace with generateRandomNumber() helper? Same applies for API pages
-    artist_id: generateRandomNumber(100),
+    artist_id: 987654321,
     artist_name: 'Billy Joel',
-    artist_name_translation_list: [],
-    artist_comment: '',
-    artist_country: '',
-    artist_alias_list: [],
-    artist_rating: 0,
-    artist_twitter_url: '',
-    artist_credits: {
-      artist_list: [],
-    },
-    restricted: 0,
-    updated_time: '',
-    begin_date_year: '',
-    begin_date: '',
-    end_date_year: '',
-    end_date: '',
+  },
+  {
+    artist_id: 192837465,
+    artist_name: 'Kasabian',
+  },
+  {
+    artist_id: 5647382910,
+    artist_name: 'Bonnie Tyler',
+  },
+  {
+    artist_id: 1324758609,
+    artist_name: 'Mos Def',
+  },
+  {
+    artist_id: 1324758609,
+    artist_name: 'Chuck Berry',
+  },
+  {
+    artist_id: 8079463512,
+    artist_name: 'Bob Dylan',
+  },
+  {
+    artist_id: 8079463512,
+    artist_name: 'Queen',
+  },
+  {
+    artist_id: 1209347865,
+    artist_name: 'Green Day',
   },
 ];

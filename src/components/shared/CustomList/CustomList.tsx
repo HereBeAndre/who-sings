@@ -13,7 +13,7 @@ interface ICustomListProps {
 const CustomList: React.FC<ICustomListProps> = ({ dataSource, header, className, renderItem }) => {
   return (
     <List
-      size="large"
+      size="default"
       header={header}
       bordered
       className={`custom-list ${className}`}

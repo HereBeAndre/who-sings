@@ -5,21 +5,22 @@ import { ITrackSnippetResponse } from 'schemas/trackSnippetData_d';
 import { IArtistRelatedResponse } from 'schemas/artistRelatedData_d';
 import { IArtistResponse } from 'schemas/artistData_d';
 
-import { BASE_URL, CHART_NAME, COUNTRY, PAGE, TRACKS_PAGE_SIZE } from 'utils/constants';
+import { BASE_URL, CHART_NAME, COUNTRY, TRACKS_PAGE_SIZE } from 'utils/constants';
 
 const axiosInstance = axios.create({
-  baseURL: `https://corsanywhere.herokuapp.com/${BASE_URL}`,
+  // Created Heroku app to act as proxy server
+  baseURL: `https://peaceful-depths-95964.herokuapp.com/${BASE_URL}`,
   params: {
-    apikey: process.env.REACT_APP_API_KEY || '',
+    apikey: process.env.REACT_APP_MUSIXMATCH_API_KEY || '',
   },
 });
 
-export const fetchTracks = () =>
+export const fetchTracks = (page: number) =>
   axiosInstance.get<string, IChartTrackResponse>('chart.tracks.get', {
     params: {
       chart_name: CHART_NAME,
       country: COUNTRY,
-      page: PAGE,
+      page,
       page_size: TRACKS_PAGE_SIZE,
       f_has_lyrics: 1,
     },

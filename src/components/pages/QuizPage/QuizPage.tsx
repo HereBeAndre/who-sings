@@ -9,7 +9,10 @@ import ErrorHandler from 'components/shared/ErrorHandler/ErrorHandler';
 import { TChartTrackData } from 'schemas/chartTrackData_d';
 
 import { fetchTracks } from 'api/api';
+
 import { showNotificationPopup } from 'utils/ui';
+import { generateRandomNumber } from 'utils/functions';
+import { BASE_PAGE_NUMBER } from 'utils/constants';
 
 import QuizPageContext from './QuizPageContext';
 
@@ -25,7 +28,7 @@ const QuizPage: React.FC = (props) => {
 
   useEffect(() => {
     setIsTracksReqLoading(true);
-    fetchTracks().then(
+    fetchTracks(generateRandomNumber(BASE_PAGE_NUMBER)).then(
       (response) => {
         setIsTracksReqLoading(false);
         setTracks(response?.data?.message?.body?.track_list);

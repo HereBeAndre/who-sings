@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <div id="navbar">
-      <div>Who Sings</div>
+      <div id="app-logo">Who Sings</div>
       <div>{username ? <UserMenu username={username} /> : null}</div>
     </div>
   );

@@ -9,7 +9,7 @@ import ErrorHandler from 'components/shared/ErrorHandler/ErrorHandler';
 
 import { fetchRelatedArtists, fetchArtist, fetchTrack } from 'api/api';
 
-import { getTrackProperty, reduceArtistObject } from 'utils/functions';
+import { getTrackProperty, reduceArtistObject, shuffle } from 'utils/functions';
 import { WRONG_ARTIST_OPTIONS } from 'utils/constants';
 
 import { initialState, quizCardReducer } from './reducers';
@@ -79,11 +79,10 @@ const QuizCard: React.FC<IQuizCardProps> = ({ track }) => {
           dispatch({ type: 'setIsRelatedArtistReqLoading', payload: false });
           const artistListResponse = response?.data?.message?.body?.artist_list || [];
 
-          // TODO Add mocked artists to WRONG_ARTIST_OPTIONS and pick them randomly
           const relatedArtists =
             artistListResponse.length === 2
               ? reduceArtistObject(artistListResponse)
-              : WRONG_ARTIST_OPTIONS;
+              : shuffle(WRONG_ARTIST_OPTIONS).slice(0, 2);
 
           setArtists((prev) => [...prev, ...relatedArtists]);
         },
