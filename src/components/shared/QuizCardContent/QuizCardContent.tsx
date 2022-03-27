@@ -14,9 +14,9 @@ import {
   MILLISECONDS_PER_QUESTION,
   SECONDS_PER_QUESTION,
 } from 'utils/constants';
-import { handleCorrectAnswer, handleGameOver } from 'utils/gameHelpers';
-import QuizCardContentHeader from './partials/QuizCardContentHeader';
+import { handleCorrectAnswer, handleCountdownColor, handleGameOver } from 'utils/gameHelpers';
 
+import QuizCardContentHeader from './partials/QuizCardContentHeader';
 import './QuizCardContent.scss';
 
 interface IQuizCardContentProps {
@@ -34,12 +34,14 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
   const { cardNumber, setCardNumber } = useContext(QuizPageContext);
 
   const [questionCountdown, setQuestionCountdown] = useState<number>(SECONDS_PER_QUESTION);
+  const [countdownColor, setCountdownColor] = useState<string>('green');
 
   useEffect(() => {
     // When artists are loaded, decrease remaining time
     if (artists?.length === 3) {
       const decreaseCountdown = setInterval(() => {
         setQuestionCountdown(questionCountdown > 0 ? questionCountdown - 1 : 0);
+        setCountdownColor(handleCountdownColor(questionCountdown));
       }, 1000);
 
       return () => {
@@ -61,6 +63,7 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
 
       return () => {
         setQuestionCountdown(SECONDS_PER_QUESTION);
+        setCountdownColor('green');
         clearTimeout(questionTimer);
       };
     }
@@ -68,7 +71,13 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
 
   return (
     <Card
-      title={<QuizCardContentHeader snippet={snippet} timeRemaining={questionCountdown} />}
+      title={
+        <QuizCardContentHeader
+          snippet={snippet}
+          timeRemaining={questionCountdown}
+          className={`quiz-card-content-header ${countdownColor}`}
+        />
+      }
       className="quiz-card-content"
     >
       {artists?.map((artist) => {

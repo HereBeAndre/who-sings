@@ -50,3 +50,10 @@ export const handleGameOver = (callback: NavigateFunction, action: string = AppR
   to a specific page */
   callback(action);
 };
+
+// USAGE ~ Set countdown text classname based on time remaining
+export const handleCountdownColor = (countdown: number): string => {
+  if (countdown <= 4) return 'red';
+  if (countdown > 4 && countdown <= 7) return 'orange';
+  return 'green';
+};

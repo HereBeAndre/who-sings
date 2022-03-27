@@ -1,10 +1,13 @@
 import { TArtistData } from 'schemas/musixMatchData/artistRelatedData_d';
+import { TChartName } from 'schemas/musixMatchData/chartTrackData_d';
 
 // START ~ API related variables
 export const BASE_URL = 'https://api.musixmatch.com/ws/1.1/';
-export const COUNTRY = 'WV';
-export const CHART_NAME = 'top';
-export const BASE_PAGE_NUMBER = 10;
+export const COUNTRY: string = 'us';
+export const CHART_NAME: TChartName = 'top';
+// Use as base number to generate random page number when fetching for tracks
+export const BASE_PAGE_NUMBER = 15;
+// Results in how many questions per game
 export const TRACKS_PAGE_SIZE = 5;
 export const ARTISTS_PAGE_SIZE = 3;
 // END ~ API related variables

@@ -21,7 +21,10 @@
     - [`npm run build`](#npm-run-build)
     - [`npm run eject`](#npm-run-eject)
   - [Requirements](#requirements)
-  - [Implementation choices and Features](#implementation-choices-and-features)
+  - [Implementation and Features](#implementation-and-features)
+    - [User Data Storage](#user-data-storage)
+    - [Routing](#routing)
+    - [App State](#app-state)
   - [Screenshots](#screenshots)
   - [Room for Improvement](#room-for-improvement)
   - [License](#license)
@@ -100,12 +103,27 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 - [x] Count the points and save them at the end of the game;
 - [x] Game time countdown for every quiz card. Once it runs out you pass to the next quiz card without getting any points.
 
-## Implementation choices and Features
+## Implementation and Features
+
+### User Data Storage
 
 > - User's game data - including username, score and last played games - is stored in Session Storage.
 > - When a user logs out, their username and last played games data is stored in Local Storage so that on subsequent log in their data is retrieved from there.
 
-> - WIP
+### Routing
+
+> - Routing is handled with `react-router-dom`.
+> - User is redirected to login page if they try to access a private route without being logged in.
+> - Wildcard route redirects to quiz page.
+
+### App State
+
+> - No state management library was used.
+> - The state of the app and its components is handled almost solely via the `useState` hook.
+>   In one case I've decided to extract the state in a reducer function, relying on the `useReducer` hook to avoid clogging the component with too many states.
+> - Data is shared top-down between components via props, except for the `cardNumber` variable - a. k.a. the index of the current quiz card - which is accessible everywhere within the app via the `useContext` hook.
+
+> WIP
 
 ## Screenshots
 
@@ -127,6 +145,7 @@ Known bugs:
 
 - [ ] Responsiveness is missing on smaller devices. See first point of Todo list above;
 - [ ] Missing ellipsis in quiz card buttons' text when artist name is overly long;
+- [ ] Fix position of lyrics snippet to avoid floating span shift on countdown change;
 
 ## License
 

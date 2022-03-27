@@ -2,6 +2,24 @@
   width: 100%;
   border-radius: 16px;
   box-shadow: 1px 2px 12px #343333;
+  .ant-card-head {
+    .ant-card-head-wrapper {
+      .ant-card-head-title {
+        .green span:nth-child(2) {
+          transition: linear 1s;
+          color: rgb(25, 102, 51);
+        }
+        .orange span:nth-child(2) {
+          transition: linear 1s;
+          color: rgb(212, 109, 41);
+        }
+        .red span:nth-child(2) {
+          transition: linear 1s;
+          color: rgb(197, 56, 56);
+        }
+      }
+    }
+  }
   .ant-card-body {
     width: 60%;
     margin: 0 auto;
@@ -41,4 +59,22 @@
   font-size: 20px;
   font-weight: 900;
   color: #1d1d1d;
+}
+
+@media only screen and (min-width: 320px) and (max-device-width: 425px) {
+  .quiz-card-content {
+    .ant-card-body {
+      .quiz-card-button {
+        font-size: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-device-width: 768px) {
+  .quiz-card-content {
+    .ant-card-body {
+      width: 100%;
+    }
+  }
 }
