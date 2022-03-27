@@ -1,5 +1,7 @@
 import { TMetaData } from './metaData_d';
 
+export type TChartName = 'top' | 'hot' | 'mxmweekly' | 'mxmweekly_new';
+
 export type TChartTrackData = {
   track: {
     track_id: number;
