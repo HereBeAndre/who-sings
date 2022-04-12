@@ -8,7 +8,7 @@ import ErrorHandler from 'components/shared/ErrorHandler/ErrorHandler';
 
 import { TChartTrackData } from 'schemas/musixMatchData/chartTrackData_d';
 
-import { fetchTracks } from 'api/api';
+import { fetchGameData, fetchTracks } from 'api/api';
 
 import { showNotificationPopup } from 'utils/ui';
 import { generateRandomNumber } from 'utils/functions';
@@ -28,19 +28,35 @@ const QuizPage: React.FC = (props) => {
 
   useEffect(() => {
     setIsTracksReqLoading(true);
-    fetchTracks(generateRandomNumber(BASE_PAGE_NUMBER)).then(
+
+    fetchGameData().then(
       (response) => {
         setIsTracksReqLoading(false);
-        setTracks(response?.data?.message?.body?.track_list);
-      },
-      /* Handle errors here instead of a catch() block so that we don't swallow
+        sessionStorage.setItem('gameData', JSON.stringify(response) || '');
+        const gameData = sessionStorage.getItem('gameData') || '';
+        setTracks(JSON.parse(gameData));
+        /* Handle errors here instead of a catch() block so that we don't swallow
     exceptions from actual bugs in component */
+      },
       (err) => {
         setIsTracksReqLoading(false);
         // Mock error
         setTracksReqError('Error');
       },
     );
+    // fetchTracks(generateRandomNumber(BASE_PAGE_NUMBER)).then(
+    //   (response) => {
+    //     setIsTracksReqLoading(false);
+    //     setTracks(response?.data?.message?.body?.track_list);
+    //   },
+    //   /* Handle errors here instead of a catch() block so that we don't swallow
+    // exceptions from actual bugs in component */
+    //   (err) => {
+    //     setIsTracksReqLoading(false);
+    //     // Mock error
+    //     setTracksReqError('Error');
+    //   },
+    // );
   }, []);
 
   useEffect(() => {

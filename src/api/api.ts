@@ -1,11 +1,20 @@
+/* eslint-disable consistent-return */
 import axios from 'axios';
 
-import { IChartTrackResponse } from 'schemas/musixMatchData/chartTrackData_d';
+import { IChartTrackResponse, TChartTrackData } from 'schemas/musixMatchData/chartTrackData_d';
 import { ITrackSnippetResponse } from 'schemas/musixMatchData/trackSnippetData_d';
 import { IArtistResponse } from 'schemas/musixMatchData/artistData_d';
 import { IArtistRelatedResponse } from 'schemas/musixMatchData/artistRelatedData_d';
 
-import { BASE_URL, CHART_NAME, COUNTRY, TRACKS_PAGE_SIZE } from 'utils/constants';
+import {
+  BASE_PAGE_NUMBER,
+  BASE_URL,
+  CHART_NAME,
+  COUNTRY,
+  TRACKS_PAGE_SIZE,
+  WRONG_ARTIST_OPTIONS,
+} from 'utils/constants';
+import { generateRandomNumber, reduceArtistObject, shuffle } from 'utils/functions';
 
 const axiosInstance = axios.create({
   // Created Heroku app to act as proxy server
@@ -48,3 +57,39 @@ export const fetchRelatedArtists = (artist_id: number) =>
       page: 1,
     },
   });
+
+// Alternative, possibly better way of initializing game - still needs some fix
+// ! NOTE: In order to implement this game initialization, the entire game structure must be re-organized.
+export const fetchGameData = async () => {
+  try {
+    const tracks = await fetchTracks(generateRandomNumber(BASE_PAGE_NUMBER));
+    const tracksData = tracks.data.message.body.track_list;
+
+    const response = Promise.all(
+      tracksData.map(async (t: TChartTrackData) => {
+        const track = await fetchTrack(t.track.track_id);
+        const artist = await fetchArtist(t.track.artist_id);
+        const relatedArtists = await fetchRelatedArtists(t.track.artist_id);
+
+        const artistListResponse = relatedArtists?.data?.message?.body?.artist_list || [];
+
+        const relatedArtistList =
+          artistListResponse.length === 2
+            ? reduceArtistObject(artistListResponse)
+            : shuffle(WRONG_ARTIST_OPTIONS).slice(0, 2);
+
+        return {
+          snippet: track?.data?.message?.body?.snippet?.snippet_body,
+          artist: {
+            artist_id: artist?.data?.message?.body?.artist?.artist_id,
+            artist_name: artist?.data?.message?.body?.artist?.artist_name,
+          },
+          relatedArtists: relatedArtistList,
+        };
+      }),
+    );
+    return response;
+  } catch (err) {
+    console.log('Error - Fetch game data', err);
+  }
+};
