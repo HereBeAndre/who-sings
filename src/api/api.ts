@@ -58,8 +58,8 @@ export const fetchRelatedArtists = (artist_id: number) =>
     },
   });
 
-// Alternative, possibly better way of initializing game - still needs some fix
-// ! NOTE: In order to implement this game initialization, the entire game structure must be re-organized.
+// Alternative, better way of initializing game.
+// ! NOTE: In order to implement this game initialization mode, the entire game structure was re-organized.
 export const fetchGameData = async () => {
   try {
     const tracks = await fetchTracks(generateRandomNumber(BASE_PAGE_NUMBER));
@@ -90,6 +90,7 @@ export const fetchGameData = async () => {
     );
     return response;
   } catch (err) {
+    // Ideally, do something useful with this error
     console.log('Error - Fetch game data', err);
   }
 };

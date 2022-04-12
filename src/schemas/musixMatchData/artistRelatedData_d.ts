@@ -24,6 +24,23 @@ export type TArtistData = {
   end_date: string;
 };
 
+export type TBasicArtistData = Omit<
+  TArtistData,
+  | 'artist_name_translation_list'
+  | 'artist_comment'
+  | 'artist_country'
+  | 'artist_alias_list'
+  | 'artist_rating'
+  | 'artist_twitter_url'
+  | 'artist_credits'
+  | 'restricted'
+  | 'updated_time'
+  | 'begin_date_year'
+  | 'begin_date'
+  | 'end_date_year'
+  | 'end_date'
+>;
+
 interface TArtistRelatedMetaData extends TMetaData {
   available: number;
 }

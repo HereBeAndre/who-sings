@@ -6,20 +6,18 @@ import Page from 'components/layout/Page/Page';
 import QuizCard from 'components/shared/QuizCard/QuizCard';
 import ErrorHandler from 'components/shared/ErrorHandler/ErrorHandler';
 
-import { TChartTrackData } from 'schemas/musixMatchData/chartTrackData_d';
+import { TTrackGameData } from 'schemas/musixMatchData/chartTrackData_d';
 
-import { fetchGameData, fetchTracks } from 'api/api';
+import { fetchGameData } from 'api/api';
 
 import { showNotificationPopup } from 'utils/ui';
-import { generateRandomNumber } from 'utils/functions';
-import { BASE_PAGE_NUMBER } from 'utils/constants';
 
 import QuizPageContext from './QuizPageContext';
 
 import './QuizPage.scss';
 
 const QuizPage: React.FC = (props) => {
-  const [tracks, setTracks] = useState<TChartTrackData[]>([]);
+  const [tracks, setTracks] = useState<TTrackGameData[]>([]);
   const [isTracksReqLoading, setIsTracksReqLoading] = useState<boolean>(false);
   const [tracksReqError, setTracksReqError] = useState<string>('');
 
@@ -28,7 +26,6 @@ const QuizPage: React.FC = (props) => {
 
   useEffect(() => {
     setIsTracksReqLoading(true);
-
     fetchGameData().then(
       (response) => {
         setIsTracksReqLoading(false);
@@ -44,19 +41,9 @@ const QuizPage: React.FC = (props) => {
         setTracksReqError('Error');
       },
     );
-    // fetchTracks(generateRandomNumber(BASE_PAGE_NUMBER)).then(
-    //   (response) => {
-    //     setIsTracksReqLoading(false);
-    //     setTracks(response?.data?.message?.body?.track_list);
-    //   },
-    //   /* Handle errors here instead of a catch() block so that we don't swallow
-    // exceptions from actual bugs in component */
-    //   (err) => {
-    //     setIsTracksReqLoading(false);
-    //     // Mock error
-    //     setTracksReqError('Error');
-    //   },
-    // );
+    return () => {
+      setIsTracksReqLoading(false);
+    };
   }, []);
 
   useEffect(() => {

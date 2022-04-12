@@ -1,19 +1,20 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import BaseLayout from 'components/layout/BaseLayout/BaseLayout';
 import Page from 'components/layout/Page/Page';
 import LoginCard, { TUserFormData } from 'components/shared/LoginCard/LoginCard';
+import QuizPageContext from 'components/pages/QuizPage/QuizPageContext';
 
 import { initializeGame } from 'utils/gameHelpers';
-import { fetchGameData } from 'api/api';
 
 const LoginPage: React.FC = (props) => {
   const navigate = useNavigate();
+  const { setCardNumber } = useContext(QuizPageContext);
 
   const onLogin = (user: TUserFormData) => {
+    setCardNumber(0);
     initializeGame(user, navigate);
-    // ! TODO: Move fetchGameData on new game click? Clean all useEffects around the procject
-    // fetchGameData().then((d) => sessionStorage.setItem('test', JSON.stringify(d) || ''));
   };
 
   return (
