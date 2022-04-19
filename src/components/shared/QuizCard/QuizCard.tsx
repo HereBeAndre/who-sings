@@ -8,6 +8,7 @@ import QuizPageContext from 'components/pages/QuizPage/QuizPageContext';
 
 import { handleGameOver } from 'utils/gameHelpers';
 import { LAST_QUESTION_INDEX } from 'utils/constants';
+import { shuffle } from 'utils/functions';
 
 interface IQuizCardProps {
   track: TTrackGameData;
@@ -17,6 +18,8 @@ const QuizCard: React.FC<IQuizCardProps> = ({ track }) => {
   const navigate = useNavigate();
 
   const { cardNumber } = useContext(QuizPageContext);
+
+  const makeArtistList = () => shuffle([track?.artist, ...track.relatedArtists]);
 
   useEffect(() => {
     cardNumber === LAST_QUESTION_INDEX && handleGameOver(navigate);
@@ -28,7 +31,7 @@ const QuizCard: React.FC<IQuizCardProps> = ({ track }) => {
         <QuizCardContent
           snippet={track?.snippet}
           correctArtistId={track?.artist?.artist_id}
-          artists={[track?.artist, ...track.relatedArtists]}
+          artists={makeArtistList()}
         />
       ) : null}
     </>

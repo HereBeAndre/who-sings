@@ -135,11 +135,15 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Room for Improvement
 
+Done:
+
+- [x] Implement better functionality to fetch tracks and artists - achieved by moving async game initialization functions inside Promise.all;
+
 Todo:
 
 - [ ] App is not fully responsive.\
        Layout works on large screens and laptops, handled in a decent manner on tablet, buggy on mobile;
-- [ ] Implement better functionality to fetch tracks and artists;
+- [ ] Implement correct/wrong pick by coloring the selected one;
 
 Known bugs:
 

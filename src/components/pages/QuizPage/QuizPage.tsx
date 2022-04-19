@@ -27,11 +27,9 @@ const QuizPage: React.FC = (props) => {
   useEffect(() => {
     setIsTracksReqLoading(true);
     fetchGameData().then(
-      (response) => {
+      (response: any) => {
         setIsTracksReqLoading(false);
-        sessionStorage.setItem('gameData', JSON.stringify(response) || '');
-        const gameData = sessionStorage.getItem('gameData') || '';
-        setTracks(JSON.parse(gameData));
+        setTracks(response);
         /* Handle errors here instead of a catch() block so that we don't swallow
     exceptions from actual bugs in component */
       },
