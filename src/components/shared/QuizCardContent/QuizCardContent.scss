@@ -29,6 +29,12 @@
     align-items: stretch;
     row-gap: 16px;
   }
+  .quiz-card-button__submitted-answer {
+    background: #1d1d1d;
+    color: #f0f2f5;
+    overflow: hidden;
+    white-space: nowrap;
+  }
   .quiz-card-button {
     background: #1d1d1d;
     color: #f0f2f5;
@@ -52,6 +58,14 @@
         rgba(7, 61, 121, 1) 100%
       );
     }
+  }
+  // Class which is applied when user picks correct artist
+  #true {
+    background-color: #50c878;
+  }
+  // And when user picks wrong artist
+  #false {
+    background-color: #dc143c;
   }
 }
 

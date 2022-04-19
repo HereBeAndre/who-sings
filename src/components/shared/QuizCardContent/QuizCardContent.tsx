@@ -13,6 +13,7 @@ import {
   LAST_QUESTION_INDEX,
   MILLISECONDS_PER_QUESTION,
   SECONDS_PER_QUESTION,
+  USER_CHOICE_FEEDBACK_MILLISECONDS,
 } from 'utils/constants';
 import { handleCorrectAnswer, handleCountdownColor, handleGameOver } from 'utils/gameHelpers';
 
@@ -35,6 +36,13 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
 
   const [questionCountdown, setQuestionCountdown] = useState<number>(SECONDS_PER_QUESTION);
   const [countdownColor, setCountdownColor] = useState<string>('green');
+
+  /* USAGE ~ State responsible for keeping track whether user selects correct or wrong artist
+      For the time being, it holds a single key-value pair, like such: { 0 : true }
+      Where -> key: index of selected artist
+            -> value: `true` equals correct choice, `false` equals wrong choice
+  */
+  const [artistsMap, setArtistsMap] = useState<any>({});
 
   useEffect(() => {
     // When artists are loaded, decrease remaining time
@@ -61,13 +69,26 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
         setCardNumber(cardNumber + 1);
       }, MILLISECONDS_PER_QUESTION);
 
+      // Perform clean-up upon new song snippet
       return () => {
         setQuestionCountdown(SECONDS_PER_QUESTION);
         setCountdownColor('green');
         clearTimeout(questionTimer);
+        setArtistsMap({});
       };
     }
   }, [artists]);
+
+  const moveToNextQuestion = () => {
+    const answerFeedbackTimeout = setTimeout(
+      () => setCardNumber(cardNumber + 1),
+      USER_CHOICE_FEEDBACK_MILLISECONDS,
+    );
+
+    return () => {
+      clearTimeout(answerFeedbackTimeout);
+    };
+  };
 
   return (
     <Card
@@ -80,18 +101,28 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
       }
       className="quiz-card-content"
     >
-      {artists?.map((artist) => {
+      {artists?.map((artist, i) => {
         return (
           <Button
             type="default"
             shape="round"
-            className="quiz-card-button"
+            className={
+              Object.values(artistsMap).length
+                ? 'quiz-card-button__submitted-answer'
+                : `quiz-card-button`
+            }
+            id={`${artistsMap[i]}`}
             icon={<PlayCircleOutlined />}
             size="large"
-            key={artist?.artist_id}
+            // TODO Fix following line
+            key={artist?.artist_id || Math.random() * 100000000}
             onClick={() => {
+              setArtistsMap((prev: any) => ({
+                ...prev,
+                [i]: artist?.artist_id === correctArtistId,
+              }));
               if (artist?.artist_id === correctArtistId) handleCorrectAnswer();
-              setCardNumber(cardNumber + 1);
+              moveToNextQuestion();
             }}
           >
             {artist?.artist_name}

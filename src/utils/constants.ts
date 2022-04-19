@@ -15,6 +15,8 @@ export const ARTISTS_PAGE_SIZE = 3;
 // START ~ Game variables
 export const MILLISECONDS_PER_QUESTION = 10000;
 export const SECONDS_PER_QUESTION = MILLISECONDS_PER_QUESTION / 1000;
+// N milliseconds user is going to see green / red button after they picked an artist
+export const USER_CHOICE_FEEDBACK_MILLISECONDS = 1500;
 export const CORRECT_ANSWER_POINTS = 100;
 export const LAST_QUESTION_INDEX = 5;
 // Set high scores ranking to 10 places
