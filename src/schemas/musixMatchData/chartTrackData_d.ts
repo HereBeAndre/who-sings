@@ -1,3 +1,4 @@
+import { TArtistData, TBasicArtistData } from './artistRelatedData_d';
 import { TMetaData } from './metaData_d';
 
 export type TChartName = 'top' | 'hot' | 'mxmweekly' | 'mxmweekly_new';
@@ -27,6 +28,12 @@ export type TChartTrackData = {
       music_genre_list: unknown[];
     };
   };
+};
+
+export type TTrackGameData = {
+  artist: TBasicArtistData;
+  relatedArtists: (TArtistData | TBasicArtistData)[];
+  snippet: string;
 };
 
 export interface IChartTrackResponse {

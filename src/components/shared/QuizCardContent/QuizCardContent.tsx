@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Card } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
 
-import { TArtistData } from 'schemas/musixMatchData/artistRelatedData_d';
+import { TArtistData, TBasicArtistData } from 'schemas/musixMatchData/artistRelatedData_d';
 
 import QuizPageContext from 'components/pages/QuizPage/QuizPageContext';
 
@@ -22,7 +22,7 @@ import './QuizCardContent.scss';
 interface IQuizCardContentProps {
   snippet: string;
   correctArtistId: number;
-  artists: TArtistData[];
+  artists: (TArtistData | TBasicArtistData)[];
 }
 
 const QuizCardContent: React.FC<IQuizCardContentProps> = ({

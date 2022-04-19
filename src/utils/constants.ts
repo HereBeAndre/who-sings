@@ -21,6 +21,7 @@ export const LAST_QUESTION_INDEX = 5;
 export const WOF_CUT_OFF = 10;
 // END ~ Game variables
 
+// TODO: Make sure duplicated ID issue is resolved
 /* Sometimes request for related artists returns an empty list.
 When this happens, use mocked list to fill the quiz options */
 export const WRONG_ARTIST_OPTIONS: Partial<TArtistData>[] = [
