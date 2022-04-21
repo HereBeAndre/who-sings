@@ -1,3 +1,10 @@
+@mixin quiz-button($background: #1d1d1d, $color: #f0f2f5) {
+  background: $background;
+  color: $color;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .quiz-card-content {
   width: 100%;
   border-radius: 16px;
@@ -30,16 +37,10 @@
     row-gap: 16px;
   }
   .quiz-card-button__submitted-answer {
-    background: #1d1d1d;
-    color: #f0f2f5;
-    overflow: hidden;
-    white-space: nowrap;
+    @include quiz-button();
   }
   .quiz-card-button {
-    background: #1d1d1d;
-    color: #f0f2f5;
-    overflow: hidden;
-    white-space: nowrap;
+    @include quiz-button;
     transition: 1000ms linear;
     -webkit-transition: background-color 1000ms linear;
     -moz-transition: background-color 1000ms linear;
