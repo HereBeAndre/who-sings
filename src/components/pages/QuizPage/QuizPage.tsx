@@ -3,7 +3,7 @@ import { Spin } from 'antd';
 
 import BaseLayout from 'components/layout/BaseLayout/BaseLayout';
 import Page from 'components/layout/Page/Page';
-import QuizCard from 'components/shared/QuizCard/QuizCard';
+import QuizCard from 'components/shared/cards/QuizCard/QuizCard';
 import ErrorHandler from 'components/shared/ErrorHandler/ErrorHandler';
 
 import { TTrackGameData } from 'schemas/musixMatchData/chartTrackData_d';

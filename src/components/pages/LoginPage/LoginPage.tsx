@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import BaseLayout from 'components/layout/BaseLayout/BaseLayout';
 import Page from 'components/layout/Page/Page';
-import LoginCard, { TUserFormData } from 'components/shared/LoginCard/LoginCard';
+import LoginCard, { TUserFormData } from 'components/shared/cards/LoginCard/LoginCard';
 import QuizPageContext from 'components/pages/QuizPage/QuizPageContext';
 
 import { initializeGame } from 'utils/gameHelpers';

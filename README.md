@@ -147,7 +147,9 @@ Todo:
 - [ ] Going further with correct/ wrong pick.\
        When user picks wrong option, highlight it with red background while turning background of correct pick to green.
 - [ ] Analyze and eventually improve the performance of `QuizCardContent.tsx` component.\
-       There are many setTimeout() and setInterval().
+       There are many setTimeout() and setInterval();
+- [ ] Refactor `QuizCardContent.tsx` and replace multiple use of Object.values();
+- [ ] Find a better solution for `<BaseButton />` `disabled` props;
 
 Known bugs:
 
