@@ -2,12 +2,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Card } from 'antd';
+import { Card } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
 
 import { TArtistData, TBasicArtistData } from 'schemas/musixMatchData/artistRelatedData_d';
 
 import QuizPageContext from 'components/pages/QuizPage/QuizPageContext';
+import BaseButton from 'components/shared/buttons/BaseButton';
 
 import {
   LAST_QUESTION_INDEX,
@@ -103,9 +104,7 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
     >
       {artists?.map((artist, i) => {
         return (
-          <Button
-            type="default"
-            shape="round"
+          <BaseButton
             className={
               Object.values(artistsMap).length
                 ? 'quiz-card-button__submitted-answer'
@@ -113,9 +112,7 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
             }
             id={`${artistsMap[i]}`}
             icon={<PlayCircleOutlined />}
-            size="large"
-            // TODO Fix following line
-            key={artist?.artist_id || Math.random() * 100000000}
+            key={`${artist?.artist_id}-${i}`}
             onClick={() => {
               setArtistsMap((prev: any) => ({
                 ...prev,
@@ -124,9 +121,10 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
               if (artist?.artist_id === correctArtistId) handleCorrectAnswer();
               moveToNextQuestion();
             }}
+            disabled={!!Object.values(artistsMap).length}
           >
             {artist?.artist_name}
-          </Button>
+          </BaseButton>
         );
       })}
     </Card>

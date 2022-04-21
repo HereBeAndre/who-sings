@@ -1,7 +1,7 @@
 import { NavigateFunction } from 'react-router-dom';
 
 import { AppRoutes } from 'components/routes/urls';
-import { TUserFormData } from 'components/shared/LoginCard/LoginCard';
+import { TUserFormData } from 'components/shared/cards/LoginCard/LoginCard';
 
 import { getFromStorageAndParse, stringifyAndSetToStorage } from './functions';
 import { CORRECT_ANSWER_POINTS } from './constants';
