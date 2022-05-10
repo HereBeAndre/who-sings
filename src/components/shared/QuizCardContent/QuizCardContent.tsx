@@ -17,6 +17,7 @@ import {
   USER_CHOICE_FEEDBACK_MILLISECONDS,
 } from 'utils/constants';
 import { handleCorrectAnswer, handleCountdownColor, handleGameOver } from 'utils/gameHelpers';
+import { getReferenceDTLength } from 'utils/functions';
 
 import QuizCardContentHeader from './partials/QuizCardContentHeader';
 import './QuizCardContent.scss';
@@ -106,7 +107,7 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
         return (
           <BaseButton
             className={
-              Object.values(artistsMap).length
+              getReferenceDTLength(artistsMap)
                 ? 'quiz-card-button__submitted-answer'
                 : `quiz-card-button`
             }
@@ -114,14 +115,14 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
             icon={<PlayCircleOutlined />}
             key={`${artist?.artist_id}-${i}`}
             onClick={() => {
-              setArtistsMap((prev: any) => ({
+              setArtistsMap((prev: object) => ({
                 ...prev,
                 [i]: artist?.artist_id === correctArtistId,
               }));
               if (artist?.artist_id === correctArtistId) handleCorrectAnswer();
               moveToNextQuestion();
             }}
-            disabled={!!Object.values(artistsMap).length}
+            disabled={!!getReferenceDTLength(artistsMap)}
           >
             {artist?.artist_name}
           </BaseButton>

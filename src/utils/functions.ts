@@ -58,9 +58,15 @@ export const getFromStorageAndParse = (
 // END ~ Storages helpers
 
 // START ~ Generic utils
-export const generateRandomNumber = (baseNumber: number) => Math.round(Math.random() * baseNumber);
+export const generateRandomNumber = (baseNumber: number): number =>
+  Math.round(Math.random() * baseNumber);
 
 export function shuffle<T>(data: T[]) {
   return data.sort(() => 0.5 - Math.random());
+}
+
+export function getReferenceDTLength(referenceData: Array<any> | Object): number {
+  if (Array.isArray(referenceData)) return referenceData.length;
+  return Object.values(referenceData).length;
 }
 // END ~ Generic utils

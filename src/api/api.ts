@@ -58,8 +58,7 @@ export const fetchRelatedArtists = (artist_id: number) =>
     },
   });
 
-// Alternative, better way of initializing game.
-// ! NOTE: In order to implement this game initialization mode, the entire game structure was re-organized.
+// USAGE ~ Initialize all match data as soon as user logs in + user clicks on new game
 export const fetchGameData = async () => {
   try {
     const tracks = await fetchTracks(generateRandomNumber(BASE_PAGE_NUMBER));
