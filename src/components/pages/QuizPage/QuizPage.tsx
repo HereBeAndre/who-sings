@@ -30,8 +30,8 @@ const QuizPage: React.FC = (props) => {
       (response: any) => {
         setIsTracksReqLoading(false);
         setTracks(response);
-        /* Handle errors here instead of a catch() block so that we don't swallow
-    exceptions from actual bugs in component */
+        /* Handle errors here instead of a catch() block so that we don't swallow exceptions
+        from actual bugs in component */
       },
       (err) => {
         setIsTracksReqLoading(false);

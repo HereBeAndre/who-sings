@@ -139,6 +139,8 @@ Done:
 
 - [x] Implement better functionality to fetch tracks and artists - achieved by moving async game initialization functions inside Promise.all;
 - [x] Implement correct/ wrong pick by coloring the selected one;
+- [x] Refactor `QuizCardContent.tsx` and replace multiple use of Object.values();
+- [x] Find a better solution for `<BaseButton />` `disabled` props;
 
 Todo:
 
@@ -148,8 +150,7 @@ Todo:
        When user picks wrong option, highlight it with red background while turning background of correct pick to green.
 - [ ] Analyze and eventually improve the performance of `QuizCardContent.tsx` component.\
        There are many setTimeout() and setInterval();
-- [ ] Refactor `QuizCardContent.tsx` and replace multiple use of Object.values();
-- [ ] Find a better solution for `<BaseButton />` `disabled` props;
+- [ ] Cut down on the use of `any` around the project;
 
 Known bugs:
 

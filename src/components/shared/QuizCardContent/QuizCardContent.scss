@@ -5,6 +5,11 @@
   white-space: nowrap;
 }
 
+@mixin submitted-button__disabled() {
+  // Disabled styles
+  pointer-events: none;
+}
+
 .quiz-card-content {
   width: 100%;
   border-radius: 16px;
@@ -38,6 +43,14 @@
   }
   .quiz-card-button__submitted-answer {
     @include quiz-button();
+    cursor: default;
+
+    &:disabled,
+    :disabled:hover,
+    :disabled:active,
+    :disabled:hover:active {
+      @include submitted-button__disabled();
+    }
   }
   .quiz-card-button {
     @include quiz-button;
@@ -60,7 +73,7 @@
       );
     }
   }
-  // Class which is applied when user picks correct artist
+  // Style which is applied when user picks correct artist
   #true {
     background-color: #50c878;
   }
