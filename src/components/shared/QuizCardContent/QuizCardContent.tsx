@@ -44,7 +44,7 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
       Where -> key: index of selected artist
             -> value: `true` equals correct choice, `false` equals wrong choice
   */
-  const [artistsMap, setArtistsMap] = useState<any>({});
+  const [artistsMap, setArtistsMap] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     // When artists are loaded, decrease remaining time
@@ -115,7 +115,7 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
             icon={<PlayCircleOutlined />}
             key={`${artist?.artist_id}-${i}`}
             onClick={() => {
-              setArtistsMap((prev: object) => ({
+              setArtistsMap((prev) => ({
                 ...prev,
                 [i]: artist?.artist_id === correctArtistId,
               }));

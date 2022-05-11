@@ -120,7 +120,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 > - No state management library was used.
 > - The state of the app and its components is handled almost solely via the `useState` hook.
->   In one case I've decided to extract the state in a reducer function, relying on the `useReducer` hook to avoid clogging the component with too many states.
 > - Data is shared top-down between components via props, except for the `cardNumber` variable - a. k.a. the index of the current quiz card - which is accessible everywhere within the app via the `useContext` hook.
 
 > WIP
@@ -151,6 +150,7 @@ Todo:
 - [ ] Analyze and eventually improve the performance of `QuizCardContent.tsx` component.\
        There are many setTimeout() and setInterval();
 - [ ] Cut down on the use of `any` around the project;
+- [ ] Add type assertion to `err` parameters;
 
 Known bugs:
 

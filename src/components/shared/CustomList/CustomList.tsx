@@ -4,7 +4,7 @@ import { List } from 'antd';
 import './CustomList.scss';
 
 interface ICustomListProps {
-  dataSource: any[];
+  dataSource: unknown[];
   header: ReactNode;
   className?: string;
   renderItem: ((item: any, index: number) => ReactNode) | undefined;
