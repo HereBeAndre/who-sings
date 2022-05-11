@@ -27,7 +27,7 @@ const QuizPage: React.FC = (props) => {
   useEffect(() => {
     setIsTracksReqLoading(true);
     fetchGameData().then(
-      (response: any) => {
+      (response: TTrackGameData[]) => {
         setIsTracksReqLoading(false);
         setTracks(response);
         /* Handle errors here instead of a catch() block so that we don't swallow exceptions

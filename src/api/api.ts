@@ -1,7 +1,10 @@
-/* eslint-disable consistent-return */
 import axios from 'axios';
 
-import { IChartTrackResponse, TChartTrackData } from 'schemas/musixMatchData/chartTrackData_d';
+import {
+  IChartTrackResponse,
+  TChartTrackData,
+  TTrackGameData,
+} from 'schemas/musixMatchData/chartTrackData_d';
 import { ITrackSnippetResponse } from 'schemas/musixMatchData/trackSnippetData_d';
 import { IArtistResponse } from 'schemas/musixMatchData/artistData_d';
 import { IArtistRelatedResponse } from 'schemas/musixMatchData/artistRelatedData_d';
@@ -59,7 +62,7 @@ export const fetchRelatedArtists = (artist_id: number) =>
   });
 
 // USAGE ~ Initialize all match data as soon as user logs in + user clicks on new game
-export const fetchGameData = async () => {
+export const fetchGameData = async (): Promise<TTrackGameData[]> => {
   try {
     const tracks = await fetchTracks(generateRandomNumber(BASE_PAGE_NUMBER));
     const tracksData = tracks.data.message.body.track_list;
@@ -92,4 +95,5 @@ export const fetchGameData = async () => {
     // Ideally, do something useful with this error
     console.log('Error - Fetch game data', err);
   }
+  return [];
 };

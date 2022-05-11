@@ -1,10 +1,4 @@
-import { TChartTrackData } from 'schemas/musixMatchData/chartTrackData_d';
 import { TWallOfFameUserData } from 'schemas/userData_d';
-
-// START ~ Getter / Setter helpers
-export const getTrackProperty = (track: TChartTrackData, property: 'track_id' | 'artist_id') =>
-  track?.track[property];
-// END ~ Getter / Setter helpers
 
 // START ~ Data manipulator helpers
 
@@ -17,10 +11,6 @@ export const reduceArtistObject = (list: any[]): any[] => {
   }, []);
 };
 
-// USAGE ~ get the greater integer out of an array of integers
-export const reduceIntegersArray = (array: number[]) =>
-  array.reduce((acc, curr) => (curr > acc ? curr : acc), 0);
-
 // USAGE ~ Manipulate user data stored in Session Storage to feed Wall Of Fame table data
 // TODO: O(N^2) not very efficient if input becomes large - either refactor or implement better DS in storage
 export const manipulateUserData = (data: [string, string][]): TWallOfFameUserData[] => {
@@ -32,7 +22,6 @@ export const manipulateUserData = (data: [string, string][]): TWallOfFameUserDat
     return acc;
   }, []);
 };
-
 // END ~ Data manipulator helpers
 
 // START ~ Storages helpers
