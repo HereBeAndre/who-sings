@@ -3,23 +3,21 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Card } from 'antd';
-import { PlayCircleOutlined } from '@ant-design/icons';
 
 import { TArtistData, TBasicArtistData } from 'schemas/musixMatchData/artistRelatedData_d';
 
 import QuizPageContext from 'components/pages/QuizPage/QuizPageContext';
-import BaseButton from 'components/shared/buttons/BaseButton';
 
 import {
   LAST_QUESTION_INDEX,
   MILLISECONDS_PER_QUESTION,
   SECONDS_PER_QUESTION,
-  USER_CHOICE_FEEDBACK_MILLISECONDS,
 } from 'utils/constants';
-import { handleCorrectAnswer, handleCountdownColor, handleGameOver } from 'utils/gameHelpers';
-import { getReferenceDTLength } from 'utils/functions';
+import { handleCountdownColor, handleGameOver } from 'utils/gameHelpers';
 
 import QuizCardContentHeader from './partials/QuizCardContentHeader';
+import { QuizCardContentButtonsMemoized } from './partials/QuizCardContentButtons';
+
 import './QuizCardContent.scss';
 
 interface IQuizCardContentProps {
@@ -38,13 +36,6 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
 
   const [questionCountdown, setQuestionCountdown] = useState<number>(SECONDS_PER_QUESTION);
   const [countdownColor, setCountdownColor] = useState<string>('green');
-
-  /* USAGE ~ State responsible for keeping track whether user selects correct or wrong artist
-      For the time being, it holds a single key-value pair, like such: { 0 : true }
-      Where -> key: index of selected artist
-            -> value: `true` equals correct choice, `false` equals wrong choice
-  */
-  const [artistsMap, setArtistsMap] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     // When artists are loaded, decrease remaining time
@@ -76,21 +67,9 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
         setQuestionCountdown(SECONDS_PER_QUESTION);
         setCountdownColor('green');
         clearTimeout(questionTimer);
-        setArtistsMap({});
       };
     }
   }, [artists]);
-
-  const moveToNextQuestion = () => {
-    const answerFeedbackTimeout = setTimeout(
-      () => setCardNumber(cardNumber + 1),
-      USER_CHOICE_FEEDBACK_MILLISECONDS,
-    );
-
-    return () => {
-      clearTimeout(answerFeedbackTimeout);
-    };
-  };
 
   return (
     <Card
@@ -103,31 +82,7 @@ const QuizCardContent: React.FC<IQuizCardContentProps> = ({
       }
       className="quiz-card-content"
     >
-      {artists?.map((artist, i) => {
-        return (
-          <BaseButton
-            className={
-              getReferenceDTLength(artistsMap)
-                ? 'quiz-card-button__submitted-answer'
-                : `quiz-card-button`
-            }
-            id={`${artistsMap[i]}`}
-            icon={<PlayCircleOutlined />}
-            key={`${artist?.artist_id}-${i}`}
-            onClick={() => {
-              setArtistsMap((prev) => ({
-                ...prev,
-                [i]: artist?.artist_id === correctArtistId,
-              }));
-              if (artist?.artist_id === correctArtistId) handleCorrectAnswer();
-              moveToNextQuestion();
-            }}
-            disabled={!!getReferenceDTLength(artistsMap)}
-          >
-            {artist?.artist_name}
-          </BaseButton>
-        );
-      })}
+      <QuizCardContentButtonsMemoized artists={artists} correctArtistId={correctArtistId} />
     </Card>
   );
 };
