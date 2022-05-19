@@ -143,6 +143,7 @@ Done:
 
 Todo:
 
+- [ ] Consider using memo HOC to wrap quiz card - no need to re-render the entire card as game timer runs down;
 - [ ] App is not fully responsive.\
        Layout works on large screens and laptops, handled in a decent manner on tablet, buggy on mobile;
 - [ ] Going further with correct/ wrong pick.\
