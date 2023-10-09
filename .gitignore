@@ -27,6 +27,8 @@ yarn-debug.log*
 yarn-error.log*
 .idea/build
 
+/trace
+
 # Log files
 *.log
 
