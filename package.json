@@ -46,7 +46,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "tsc": "tsc --extendedDiagnostics",
+    "trace": "tsc --generateTrace trace --incremental false && open trace"
   },
   "eslintConfig": {
     "extends": [
